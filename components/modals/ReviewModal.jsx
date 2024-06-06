@@ -1,16 +1,13 @@
 'use client'
 
-import { useState, useRef } from 'react'
-
-import { nanoid } from '@reduxjs/toolkit'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useCreateReviewMutation } from '@/store/services'
-
-import { ratingStatus, reviewSchema } from 'utils'
-
-import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
-import { Icons, TextField, DisplayError, SubmitModalBtn, Modal, HandleResponse } from 'components'
+import { nanoid } from '@reduxjs/toolkit'
+import { DisplayError, HandleResponse, Icons, Modal, SubmitModalBtn, TextField } from 'components'
+import { useRef, useState } from 'react'
+import { useFieldArray, useForm } from 'react-hook-form'
+import { ratingStatus, reviewSchema } from 'utils'
 
 const ReviewModal = props => {
   //? Props
@@ -83,6 +80,9 @@ const ReviewModal = props => {
       body: { ...data, rating, product: prdouctID },
     })
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <>
@@ -111,7 +111,10 @@ const ReviewModal = props => {
           onClose={onClose}
           className="flex flex-col h-full lg:h-[770px] pl-2 pr-4 py-3 bg-white md:rounded-lg gap-y-3"
         >
-          <Modal.Header onClose={onClose}>留下你对 {productTitle} 商品的评价</Modal.Header>
+          <Modal.Header onClose={onClose}>
+            {dict.profile?.review?.modal?.leave} {productTitle}{' '}
+            {dict.profile?.review?.modal?.product}
+          </Modal.Header>
           <Modal.Body>
             <form
               className="flex flex-col justify-between flex-1 pl-4 overflow-y-auto gap-y-5"
@@ -120,7 +123,7 @@ const ReviewModal = props => {
               {/* rating */}
               <div>
                 <div className="my-2 text-center">
-                  <span className="text-sm text-black">评分!:‌</span>
+                  <span className="text-sm text-black">{dict.profile?.review?.modal?.rating}‌</span>
                   <span className="px-1 text-sm text-sky-500">{ratingStatus[rating]}</span>
                 </div>
                 <input
@@ -150,7 +153,7 @@ const ReviewModal = props => {
 
               {/* title */}
               <TextField
-                label="评价标题"
+                label={dict.profile?.review?.modal?.title}
                 control={control}
                 errors={formErrors.title}
                 name="title"
@@ -163,7 +166,7 @@ const ReviewModal = props => {
                     className="text-xs text-gray-700 lg:text-sm md:min-w-max"
                     htmlFor="positivePoints"
                   >
-                    优点
+                    {dict.profile?.review?.modal?.pros}
                   </label>
                   <div className="flex items-center input">
                     <input
@@ -203,7 +206,7 @@ const ReviewModal = props => {
                     className="text-xs text-gray-700 lg:text-sm md:min-w-max"
                     htmlFor="negativePoints"
                   >
-                    缺点
+                    {dict.profile?.review?.modal?.cons}
                   </label>
                   <div className="flex items-center input">
                     <input
@@ -240,7 +243,7 @@ const ReviewModal = props => {
               {/* comment */}
               <div className="space-y-3 ">
                 <label className="text-xs text-gray-700 lg:text-sm md:min-w-max" htmlFor="comment">
-                  评价文字
+                  {dict.profile?.review?.modal?.text}
                 </label>
                 <textarea
                   className="h-24 resize-none input"
@@ -251,7 +254,9 @@ const ReviewModal = props => {
               </div>
 
               <div className="py-3 border-t-2 border-gray-200 lg:pb-0 ">
-                <SubmitModalBtn isLoading={isLoading}>提交评价</SubmitModalBtn>
+                <SubmitModalBtn isLoading={isLoading}>
+                  {dict.profile?.review?.modal?.submit}
+                </SubmitModalBtn>
               </div>
             </form>
           </Modal.Body>

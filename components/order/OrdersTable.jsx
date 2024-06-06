@@ -1,3 +1,4 @@
+import { useLanguageContext } from '@/context/LanguageContext'
 import { EditIconBtn } from 'components/common/IconBtns'
 import moment from 'moment-jalaali'
 import Link from 'next/link'
@@ -6,6 +7,9 @@ const OrdersTable = props => {
   //? Props
   const { orders } = props
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <div className="overflow-x-auto mt-7">
@@ -13,11 +17,11 @@ const OrdersTable = props => {
         <thead className="h-9 bg-emerald-50">
           <tr className="text-emerald-500">
             <th className="border-gray-100 border-x-2">ID</th>
-            <th>收件人姓名</th>
-            <th>状态</th>
-            <th className="border-gray-100 border-x-2">电子邮件</th>
-            <th>下单时间</th>
-            <th>更改状态</th>
+            <th>{dict.profile?.order?.details?.name}</th>
+            <th>{dict.profile?.order?.details?.status}</th>
+            <th className="border-gray-100 border-x-2">{dict.profile?.order?.details?.email}</th>
+            <th>{dict.profile?.order?.details?.time}</th>
+            <th>{dict.profile?.order?.details?.change}</th>
           </tr>
         </thead>
         <tbody className="text-gray-600">
@@ -32,10 +36,12 @@ const OrdersTable = props => {
                 <td className="py-3 px-1.5">
                   {order.delivered ? (
                     <span className="inline-block p-1 text-green-600 rounded-md bg-green-50">
-                      完成
+                      {dict.profile?.order?.details?.completed}
                     </span>
                   ) : (
-                    <span className="p-1 rounded-md text-amber-600 bg-amber-50">未确认</span>
+                    <span className="p-1 rounded-md text-amber-600 bg-amber-50">
+                      {dict.profile?.order?.details?.unconfirmed}
+                    </span>
                   )}
                 </td>
                 <td className="py-3 px-1.5">{order.user.email}</td>

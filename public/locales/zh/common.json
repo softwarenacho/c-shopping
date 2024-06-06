@@ -1,6 +1,10 @@
 {
   "lang": "中文",
   "currency": "¥",
+  "constants": {
+    "name": "精选好物",
+    "profile": "用户中心"
+  },
   "header": {
     "notLogged": "您尚未登录",
     "search": {
@@ -66,5 +70,80 @@
   "wrapper": {
     "title": "出现异常",
     "retry": "重试"
+  },
+  "profile": {
+    "dashboard": "看板",
+    "orders": "我的订单",
+    "lists": "我的收藏",
+    "reviews": "我的评价",
+    "addresses": "地址管理",
+    "history": "最近访问",
+    "info": "账户信息",
+    "order": {
+      "title": "我的订单",
+      "viewAll": "查看全部",
+      "currentOrders": "当前订单",
+      "records": "条记录",
+      "completedOrders": "成功订单",
+      "refundedOrders": "退款订单",
+      "history": "最近访问",
+      "empty": "列表为空",
+      "previous": "上一页",
+      "next": "下一页",
+      "status": {
+        "completed": "完成",
+        "unconfirmed": "未确认",
+        "delivered": "将状态更改为已交付",
+        "processing": "将状态更改为处理中",
+        "number": "订单号"
+      },
+      "details": {
+        "name": "收件人姓名",
+        "status": "状态",
+        "email": "电子邮件",
+        "time": "下单时间",
+        "change": "更改状态",
+        "completed": "完成",
+        "unconfirmed": "未确认"
+      }
+    },
+    "list" : {
+      "title": "我的收藏",
+      "empty": "您的收藏夹列表为空",
+      "soon": "（即将上线）"
+    },
+    "review": {
+      "reviews": "评价",
+      "myReviews": "我的评价",
+      "product": "商品评价",
+      "number": "条评价",
+      "write": "写下您对该商品的评价",
+      "submit": "提交确认后，通过将赠送积分。",
+      "modal": {
+        "leave": "留下你对",
+        "product": "商品的评价",
+        "rating": "评分!:",
+        "title": "评价标题",
+        "pros": "优点",
+        "cons": "缺点",
+        "text": "评价文字",
+        "submit": "提交评价"
+      },
+      "emptyComment": "暂时还没有评论，快来成为第一位评论者吧",
+      "card": {
+        "status": "状态改为已批准",
+        "reject": "拒绝",
+        "delete": "删除",
+        "confirmation": "等待确认",
+        "confirmed": "已经确认",
+        "disappeared": "不见了"
+      },
+      "delete": {
+        "deletion": "确定删除",
+        "confirm": "吗",
+        "action": "确定",
+        "cancel": "取消"
+      }
+    }
   }
 }

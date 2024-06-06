@@ -1,6 +1,10 @@
 {
   "lang": "en",
   "currency": "$",
+  "constants": {
+    "name": "C-Shopping",
+    "profile": "Profile"
+  },
   "header": {
     "notLogged": "You are not logged in",
     "search": {
@@ -63,8 +67,83 @@
     "goto": "Register",
     "admin": "You can use the email address and password below to view the admin dashboard."
   },
-    "wrapper": {
-      "title": "Error",
-      "retry": "Retry"
+  "wrapper": {
+    "title": "Error",
+    "retry": "Retry"
+  },
+  "profile": {
+    "dashboard": "Dashboard",
+    "orders": "My Orders",
+    "lists": "My Lists",
+    "reviews": "My Reviews",
+    "addresses": "My Addresses",
+    "history": "Recently Viewed",
+    "info": "Account Information",
+    "order": {
+      "title": "My Orders",
+      "viewAll": "View All",
+      "currentOrders": "Current Orders",
+      "records": "Records",
+      "completedOrders": "Completed Orders",
+      "refundedOrders": "Refunded Orders",
+      "history": "Order History",
+      "empty": "List is empty",
+      "previous": "Previous",
+      "next": "Next",
+      "status": {
+        "completed": "Completed",
+        "unconfirmed": "Unconfirmed",
+        "delivered": "Change Status to Delivered",
+        "processing": "Change Status to Processing",
+        "number": "Order Number"
+      },
+      "details": {
+        "name": "Recipient Name",
+        "status": "Status",
+        "email": "Email",
+        "time": "Order Time",
+        "change": "Change Status",
+        "completed": "Completed",
+        "unconfirmed": "Unconfirmed"
+      }
+    },
+    "list" : {
+      "title": "My Lists",
+      "empty": "Your list is empty",
+      "soon": "（Coming Soon）"
+    },
+    "review": {
+      "reviews": "Reviews",
+      "myReviews": "My Reviews",
+      "product": "Product Reviews",
+      "number": "Reviews Number",
+      "write": "Write your review for this product",
+      "submit": "After submitting confirmation, points will be awarded.",
+      "modal": {
+        "leave": "Leave your",
+        "product": "review for the product",
+        "rating": "Rating!:",
+        "title": "Review Title",
+        "pros": "Pros",
+        "cons": "Cons",
+        "text": "Review Text",
+        "submit": "Submit Review"
+      },
+      "emptyComment": "No comments yet, be the first to review!",
+      "card": {
+        "status": "Status changed to approved",
+        "reject": "Reject",
+        "delete": "Delete",
+        "confirmation": "Awaiting Confirmation",
+        "confirmed": "Confirmed",
+        "disappeared": "Disappeared"
+      },
+      "delete": {
+        "deletion": "Confirm Deletion",
+        "confirm": "Are you sure?",
+        "action": "Confirm",
+        "cancel": "Cancel"
+      }
+    }
   }
 }

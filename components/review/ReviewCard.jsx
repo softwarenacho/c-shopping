@@ -1,13 +1,12 @@
 'use client'
 
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useEditReviewMutation } from '@/store/services'
+import { Menu, Transition } from '@headlessui/react'
+import { HandleResponse, Icons, ResponsiveImage } from 'components'
 import { Fragment, useState } from 'react'
 
-import { useEditReviewMutation } from '@/store/services'
-
-import { HandleResponse, Icons, ResponsiveImage } from 'components'
-import { Menu, Transition } from '@headlessui/react'
-
-const ReveiwCard = props => {
+const ReviewCard = props => {
   //? Props
   const { item, singleComment, deleteReviewHandler } = props
 
@@ -25,6 +24,9 @@ const ReveiwCard = props => {
     })
     setStatus(statusNum)
   }
+
+  //? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Local Components
   const DropdownReview = () => (
@@ -53,7 +55,7 @@ const ReveiwCard = props => {
                   disabled={status === 2}
                 >
                   <Icons.Check className="text-white rounded-full p-0.5 icon bg-green-500 " />
-                  <span className="block">状态改为已批准</span>
+                  <span className="block">{dict.profile?.review?.card?.status}</span>
                 </button>
               </Menu.Item>
               <Menu.Item>
@@ -64,7 +66,7 @@ const ReveiwCard = props => {
                   disabled={status === 3}
                 >
                   <Icons.Cross className="text-white rounded-full p-0.5 icon bg-red-500 " />
-                  <span className="block">拒绝</span>
+                  <span className="block">{dict.profile?.review?.card?.reject}</span>
                 </button>
               </Menu.Item>
             </>
@@ -76,7 +78,7 @@ const ReveiwCard = props => {
                 onClick={() => deleteReviewHandler(item._id)}
               >
                 <Icons.Delete className="icon" />
-                <span>删除</span>
+                <span>{dict.profile?.review?.card?.delete}</span>
               </button>
             </Menu.Item>
           ) : null}
@@ -104,9 +106,8 @@ const ReveiwCard = props => {
           <ResponsiveImage
             dimensions="w-16 h-12 lg:w-24 lg:h-20"
             src={item.product.images[0].url}
-            alt=""
+            alt="product image"
           />
-
           <span
             className={`w-5 h-5 text-center pt-0.5 inline-block rounded-md text-white  ml-10 lg:ml-20 ${
               item.rating <= 2 ? 'bg-red-500' : item.rating === 3 ? 'bg-amber-500' : 'bg-green-500'
@@ -142,7 +143,11 @@ const ReveiwCard = props => {
                         : 'text-red-500'
                   }`}
                 >
-                  {status === 1 ? '等待确认' : status === 2 ? '已经确认' : '不见了'}
+                  {status === 1
+                    ? dict.profile?.review?.card?.confirmation
+                    : status === 2
+                      ? dict.profile?.review?.card?.confirmed
+                      : dict.profile?.review?.card?.dissapeared}
                 </span>
               </div>
               <DropdownReview />
@@ -175,4 +180,4 @@ const ReveiwCard = props => {
   )
 }
 
-export default ReveiwCard
+export default ReviewCard

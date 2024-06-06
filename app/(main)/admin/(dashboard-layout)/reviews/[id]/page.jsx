@@ -2,8 +2,7 @@
 
 import { useTitle } from '@/hooks'
 import { useGetSingleReviewQuery } from '@/store/services'
-
-import { BigLoading, PageContainer, ReveiwCard } from 'components'
+import { BigLoading, PageContainer, ReviewCard } from 'components'
 
 const SingleCommentPage = ({ params: { id } }) => {
   useTitle('评价详情')
@@ -22,7 +21,7 @@ const SingleCommentPage = ({ params: { id } }) => {
           </div>
         ) : data ? (
           <section className="px-3 py-3 mx-auto lg:px-8">
-            <ReveiwCard singleComment item={data.data} />
+            <ReviewCard singleComment item={data.data} />
           </section>
         ) : null}
       </PageContainer>

@@ -1,18 +1,25 @@
 'use client'
 
-import { FavoritesListEmpty, PageContainer, ProfileLayout } from 'components'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
+import { FavoritesListEmpty, PageContainer } from 'components'
 
 const Lists = () => {
   useTitle('我的收藏')
+
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <main>
-      <PageContainer title="我的收藏">
+      <PageContainer title={dict.profile?.list?.title}>
         <section className="py-20">
           <FavoritesListEmpty className="mx-auto h-52 w-52" />
-          <p className="text-center">您的收藏夹列表为空</p>
-          <span className="block my-3 text-base text-center text-amber-500">（即将上线）</span>
+          <p className="text-center">{dict.profile?.list?.empty}</p>
+          <span className="block my-3 text-base text-center text-amber-500">
+            {dict.profile?.list?.soon}
+          </span>
         </section>
       </PageContainer>
     </main>

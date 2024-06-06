@@ -1,17 +1,16 @@
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useChangeRoute, useDisclosure, useUrlQuery, useUserInfo } from '@/hooks'
 import { useGetProductReviewsQuery } from '@/store/services'
-
 import {
-  Pagination,
-  Icons,
-  ShowWrapper,
   EmptyComment,
-  ReviewModal,
-  ReveiwSkeleton,
-  ReviewProductCard,
+  Icons,
+  Pagination,
   RedirectToLogin,
+  ReviewModal,
+  ReviewProductCard,
+  ReviewSkeleton,
+  ShowWrapper,
 } from 'components'
-
-import { useUrlQuery, useUserInfo, useDisclosure, useChangeRoute } from '@/hooks'
 
 const Reviews = props => {
   //? Props
@@ -43,11 +42,14 @@ const Reviews = props => {
     reviewModalHandlers.open()
   }
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <>
       <RedirectToLogin
-        title="您尚未登录"
+        title={dict.header?.notLogged}
         text=""
         onClose={redirectModalHandlers.close}
         isShow={isShowRedirectModal}
@@ -60,8 +62,10 @@ const Reviews = props => {
       />
       <section className="px-3 py-3 space-y-4 lg:max-w-3xl xl:max-w-5xl" id="_productReviews">
         <div className="flex items-center justify-between">
-          <h4 className="mb-3 lg:border-b-2 lg:border-red-500">商品评价</h4>
-          <span className="text-xs text-sky-500">{numReviews} 条评价</span>
+          <h4 className="mb-3 lg:border-b-2 lg:border-red-500">{dict.profile?.review?.product}</h4>
+          <span className="text-xs text-sky-500">
+            {numReviews} {dict.profile?.review?.number}
+          </span>
         </div>
         <div className="lg:ml-10">
           <div className="mb-8">
@@ -71,10 +75,10 @@ const Reviews = props => {
               className="flex items-center w-full gap-x-5"
             >
               <Icons.Comment className="icon" />
-              <span className="text-sm text-black ">写下您对该商品的评价</span>
+              <span className="text-sm text-black ">{dict.profile?.review?.write}</span>
               <Icons.ArrowRight2 className="ml-auto icon" />
             </button>
-            <p className="mt-6 text-xs text-gray-500">提交确认后，通过将赠送积分。</p>
+            <p className="mt-6 text-xs text-gray-500">{dict.profile?.review?.submit}</p>
           </div>
 
           <ShowWrapper
@@ -85,7 +89,7 @@ const Reviews = props => {
             isSuccess={isSuccess}
             dataLength={data ? data?.data?.reviewsLength : 0}
             emptyComponent={<EmptyComment />}
-            loadingComponent={<ReveiwSkeleton />}
+            loadingComponent={<ReviewSkeleton />}
           >
             <div className="py-3 space-y-4 divide-y-2 lg:px-6 sm:px-2">
               {data?.data?.reviews?.map(item => <ReviewProductCard item={item} key={item._id} />)}
