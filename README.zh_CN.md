@@ -243,6 +243,10 @@
 	```
 	npm run dev 
 	```
+	or
+	```
+	yarn dev
+	```
 6. 注册一个账户
 	```
 	http://localhost:3000/register

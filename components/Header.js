@@ -1,5 +1,7 @@
+import { AddressBar, Cart, LogoH, Navbar, Search, Sidebar, Signup } from 'components'
 import Link from 'next/link'
-import { Icons, Search, Signup, Cart, Navbar, Sidebar, AddressBar, LogoH } from 'components'
+import LanguageSwitcher from '../components/LanguageSwitcher'
+
 export default function Header() {
   return (
     <>
@@ -14,6 +16,8 @@ export default function Header() {
           <div className="inline-flex items-center justify-between w-full py-2 border-b lg:border-b-0 space-x-10">
             <Search className="flex flex-grow space-x-7" />
             <div className="inline-flex items-center space-x-4 pr-4">
+              <LanguageSwitcher />
+              <span className="hidden lg:block bg-gray-300 w-0.5 h-8" />
               <Signup />
               <span className="hidden lg:block bg-gray-300 w-0.5 h-8" />
               <Cart />

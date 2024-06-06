@@ -5,8 +5,11 @@ import { useEffect, useState } from 'react'
 // ? Store
 import StoreProvider from 'app/StoreProvider'
 
-// ? Conponents
-import { PageLoading, Alert } from '@/components'
+// ? Dictionary
+import { LanguageContextProvider } from '@/context/LanguageContext'
+
+// ? Components
+import { Alert, PageLoading } from '@/components'
 
 export default function Layout({ children }) {
   //? Fix Hydration failed
@@ -21,7 +24,7 @@ export default function Layout({ children }) {
 
   return (
     <StoreProvider>
-      {children}
+      <LanguageContextProvider>{children}</LanguageContextProvider>
       <Alert />
       <PageLoading />
     </StoreProvider>

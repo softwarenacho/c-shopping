@@ -208,6 +208,13 @@ functionality and responsibilities, making it easier for team members to underst
     npm run dev 
     ```
 
+    or
+
+    ```
+    yarn dev
+    ```
+
+
 6. Register an account:
 
     ```

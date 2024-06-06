@@ -1,5 +1,5 @@
-import '/styles/main.css'
 import '/styles/browser-styles.css'
+import '/styles/main.css'
 import '/styles/swiper.css'
 
 import { enSiteTitle, siteDescription, siteTitle } from '@/utils'
@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <body>{children}</body>
     </html>
   )
