@@ -27,8 +27,8 @@ const LanguageSwitcher = () => {
       className="flex-center text-sm gap-x-2 cursor-pointer dropdown__button"
       onClick={() => changeLanguage()}
     >
-      {language === 'zh' && <button>En</button>}
-      {language === 'en' && <button>中文</button>}
+      {language === 'en' && <button>En</button>}
+      {language === 'zh' && <button>中文</button>}
       <Icons.Translate className="icon" />
     </div>
   )

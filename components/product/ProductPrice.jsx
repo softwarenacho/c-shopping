@@ -1,10 +1,13 @@
-import { formatNumber } from 'utils'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { DiscountProduct } from 'components'
+import { formatNumber } from 'utils'
 
 const ProductPrice = props => {
   //? Props
   const { singleProduct, inStock, discount, price } = props
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Render(s)
   return (
@@ -13,7 +16,7 @@ const ProductPrice = props => {
         <span className="text-sm text-gray-700">
           {formatNumber(price - (discount * price) / 100)}
         </span>
-        <span className="ml-1">¥</span>
+        <span className="ml-1">{dict.currency}</span>
       </div>
 
       {discount > 0 && (
@@ -23,7 +26,7 @@ const ProductPrice = props => {
           )}
           <span className="ml-2 text-sm text-gray-500 line-through">
             {formatNumber(price)}
-            <span className="ml-1">¥</span>
+            <span className="ml-1">{dict.currency}</span>
           </span>
         </div>
       )}

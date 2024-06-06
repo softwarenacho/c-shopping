@@ -1,3 +1,70 @@
 {
-  "greeting": "Hello"
+  "lang": "en",
+  "currency": "$",
+  "header": {
+    "notLogged": "You are not logged in",
+    "search": {
+      "placeholder": "Good at things, and search...",
+      "modal": {
+        "title": "Search",
+        "empty": {
+          "title": "Results not found",
+          "description": "Use more words or check input properties",
+          "list": "List is empty"
+        }
+      }
+    },
+    "address": {
+      "select": "Please select your address",
+      "send": "Send",
+      "modal": {
+        "title": "Address Management",
+        "description": "Please enter your delivery address",
+        "province": "Please select your province",
+        "city": "Please select your city",
+        "area": "Please select your country",
+        "street": "Street Information",
+        "code": "Zip Code",
+        "submit": "Submit"
+      }
+    },
+    "navbar": {
+      "categories": "Categories"
+    },
+    "cart": {
+      "items": "Items",
+      "check": "Check your shopping cart",
+      "amount": "Amount due",
+      "goto": "Go to payment",
+      "empty": "Your shopping cart is empty!"
+    },
+    "signup" : {
+      "register": "Register",
+      "login": "Log In",
+      "logout": "Log Out",
+      "response": "Logged out successfully"
+    }
+  },
+  "signup" : {
+    "register": "Register",
+    "error": "Registration Error",
+    "name": "Please enter your account name",
+    "email": "Please enter your email",
+    "password": "Please enter your password",
+    "confirm": "Please confirm your password",
+    "account": "I already have an account",
+    "goto": "Log In"
+  },
+  "login": {
+    "email": "Please enter your email",
+    "password": "Please enter your password",
+    "login": "Log In",
+    "noAccount": "I don't have an account",
+    "goto": "Register",
+    "admin": "You can use the email address and password below to view the admin dashboard."
+  },
+    "wrapper": {
+      "title": "Error",
+      "retry": "Retry"
+  }
 }

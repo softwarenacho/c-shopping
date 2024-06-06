@@ -1,3 +1,70 @@
 {
-  "greeting": "你好"
+  "lang": "中文",
+  "currency": "¥",
+  "header": {
+    "notLogged": "您尚未登录",
+    "search": {
+      "placeholder": "善假于物，用好搜索...",
+      "modal": {
+        "title": "搜索",
+        "empty": {
+          "title": "没有找到结果",
+          "description": "使用更多可变单词或检查输入属性",
+          "list": "列表为空"
+        }
+      }
+    },
+    "address": {
+      "select": "请选择您所在的城市",
+      "send": "发送",
+      "modal": {
+        "title": "地址管理",
+        "description": "请输入您的收货地址",
+        "province": "请选择您所在的省份",
+        "city": "请选择您所在的城市",
+        "area": "请选择您所在的区县",
+        "street": "街道信息",
+        "code": "邮政编码",
+        "submit": "确定"
+      }
+    },
+    "navbar": {
+      "categories": "商品分类"
+    },
+    "cart": {
+      "items": "件商品",
+      "check": "查看购物车",
+      "amount": "应付金额",
+      "goto": "去支付",
+      "empty": "你的购物车是空的！"
+    },
+    "signup" : {
+      "register": "注册",
+      "login": "登录",
+      "logout": "退出",
+      "response": "退出登录成功"
+    }
+  },
+  "signup": {
+    "register": "注册",
+    "error": "注册异常",
+    "name": "请输入您的账户名称",
+    "email": "请输入您的账户邮箱",
+    "password": "请输入您的账户密码",
+    "confirm": "确认密码，请再次输入",
+    "account": "我已经有账户了",
+    "goto": "去登录"
+  },
+  "login": {
+    "email": "请输入您的账户邮箱",
+    "password": "请输入您的账户密码",
+    "login": "登录",
+    "noAccount": "我还没有账户",
+    "goto": "去注册",
+    "admin": "您可以使用下面的电子邮件地址和密码来查看管理仪表板"
+  },
+  "wrapper": {
+    "title": "出现异常",
+    "retry": "重试"
+  }
 }

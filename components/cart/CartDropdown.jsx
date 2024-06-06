@@ -1,12 +1,10 @@
-import { Fragment } from 'react'
-import { useRouter } from 'next/navigation'
-
-import { formatNumber } from 'utils'
-
-import { useUserInfo, useDisclosure, useAppSelector } from 'hooks'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { Menu, Transition } from '@headlessui/react'
-import { ArrowLink, CartItem, RedirectToLogin, Button, CartBadge, EmptyCart } from 'components'
+import { ArrowLink, Button, CartBadge, CartItem, EmptyCart, RedirectToLogin } from 'components'
+import { useAppSelector, useDisclosure, useUserInfo } from 'hooks'
+import { useRouter } from 'next/navigation'
+import { Fragment } from 'react'
+import { formatNumber } from 'utils'
 
 export default function CartDropdown() {
   //? Assets
@@ -24,11 +22,14 @@ export default function CartDropdown() {
     push('/checkout/shipping')
   }
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <>
       <RedirectToLogin
-        title="您尚未登录"
+        title={dict.header?.notLogged}
         text=""
         onClose={redirectModalHandlers.close}
         isShow={isShowRedirectModal}
@@ -53,10 +54,12 @@ export default function CartDropdown() {
               <>
                 {/* Header */}
                 <div className="flex items-center justify-between px-3 py-4">
-                  <span className="">{totalItems} 件商品</span>
-                  <ArrowLink path="/checkout/cart">查看购物车</ArrowLink>
+                  <span className="">
+                    {totalItems} {dict.header?.cart?.items}
+                  </span>
+                  <ArrowLink path="/checkout/cart">{dict.header?.cart?.check}</ArrowLink>
                 </div>
-                {/* Itmes */}
+                {/* Items */}
                 <div className="mx-1 overflow-y-auto divide-y divide-gray-50 h-80">
                   {cartItems.map(item => (
                     <CartItem item={item} key={item.itemID} />
@@ -65,20 +68,20 @@ export default function CartDropdown() {
                 {/* Footer */}
                 <div className="flex items-center justify-between p-3 border-t">
                   <div>
-                    <span>应付金额</span>
+                    <span>{dict.header?.cart?.amount}</span>
                     <div className="flex-center">
                       <span className="text-sm">{formatNumber(totalPrice - totalDiscount)}</span>
-                      <span className="ml-1">¥</span>
+                      <span className="ml-1">{dict.currency}</span>
                     </div>
                   </div>
 
-                  <Button onClick={handleRoute}>去支付</Button>
+                  <Button onClick={handleRoute}>{dict.header?.cart?.goto}</Button>
                 </div>
               </>
             ) : (
               <>
                 <EmptyCart className="mx-auto h-44 w-44" />
-                <p className="pt-2 text-base font-bold text-center">你的购物车是空的！</p>
+                <p className="pt-2 text-base font-bold text-center">{dict.header?.cart?.empty}</p>
               </>
             )}
           </Menu.Items>

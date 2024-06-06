@@ -1,15 +1,14 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-
-import { HandleResponse, LoginForm, Logo } from '@/components'
-
-import { useLoginMutation } from '@/store/services'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { userLogin, showAlert } from '@/store'
+import { LoginForm, Logo } from '@/components'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
+import { showAlert, userLogin } from '@/store'
+import { useLoginMutation } from '@/store/services'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 export default function LoginPage() {
   useTitle('管理员登录')
@@ -28,6 +27,9 @@ export default function LoginPage() {
       })
     }
   }
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Handle Login User Response
   useEffect(() => {
@@ -72,16 +74,14 @@ export default function LoginPage() {
           </Link>
           <h1>
             <font className="">
-              <font>登录</font>
+              <font>{dict.login?.login}</font>
             </font>
           </h1>
           <LoginForm isLoading={isLoading} onSubmit={submitHander} />
         </section>
 
         <div className="fixed max-w-xs px-2 py-3 bg-white border rounded-lg shadow-lg top-5 right-5">
-          <h5 className="mb-2 text-amber-600">
-            您可以使用下面的电子邮件地址和密码来查看管理仪表板。
-          </h5>
+          <h5 className="mb-2 text-amber-600">{dict.login?.admin}</h5>
           <div className="text-left">
             <span className="text-sm text-zinc-500">Email: admin@gmail.com</span>
             <br />

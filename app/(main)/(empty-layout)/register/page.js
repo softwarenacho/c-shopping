@@ -1,19 +1,16 @@
 'use client'
 
+import { HandleResponse, LoginBtn, Logo, RedirectToLogin, TextField } from '@/components'
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useCreateUserMutation } from '@/store/services'
+import { yupResolver } from '@hookform/resolvers/yup'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-import Link from 'next/link'
-
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-
-import { registerSchema } from 'utils'
-
-import { TextField, LoginBtn, HandleResponse, RedirectToLogin, Logo } from '@/components'
-
-import { useCreateUserMutation } from '@/store/services'
 import { useDispatch } from 'react-redux'
 import { userLogin } from 'store'
+import { registerSchema } from 'utils'
 
 import { useDisclosure } from '@/hooks'
 
@@ -24,6 +21,9 @@ export default function RegisterPage() {
   const { replace } = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirectTo')
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Create User
   const [createUser, { data, isSuccess, isError, isLoading, error }] = useCreateUserMutation()
@@ -69,7 +69,7 @@ export default function RegisterPage() {
   return (
     <>
       <RedirectToLogin
-        title="注册异常"
+        title={dict.signup?.error}
         text={error?.data?.message}
         onClose={redirectModalHandlers.close}
         isShow={isShowRedirectModal}
@@ -92,19 +92,19 @@ export default function RegisterPage() {
           </Link>
           <h1>
             <font className="">
-              <font>注册</font>
+              <font>{dict?.signup?.register}</font>
             </font>
           </h1>
           <form className="space-y-4" onSubmit={handleSubmit(submitHander)} autoComplete="off">
             <TextField
               errors={formErrors.name}
-              placeholder="请输入您的账户名称"
+              placeholder={dict?.signup?.name}
               name="name"
               control={control}
             />
             <TextField
               errors={formErrors.email}
-              placeholder="请输入您的账户邮箱"
+              placeholder={dict?.signup?.email}
               name="email"
               control={control}
             />
@@ -112,7 +112,7 @@ export default function RegisterPage() {
             <TextField
               errors={formErrors.password}
               type="password"
-              placeholder="请输入您的账户密码"
+              placeholder={dict?.signup?.password}
               name="password"
               control={control}
             />
@@ -120,15 +120,15 @@ export default function RegisterPage() {
               control={control}
               errors={formErrors.confirmPassword}
               type="password"
-              placeholder="确认密码，请再次输入"
+              placeholder={dict?.signup?.confirm}
               name="confirmPassword"
             />
-            <LoginBtn isLoading={isLoading}>注册</LoginBtn>
+            <LoginBtn isLoading={isLoading}>{dict?.signup?.register}</LoginBtn>
           </form>
           <div className="text-xs">
-            <p className="inline mr-2 text-gray-800 text-xs">我已经有账户了</p>
+            <p className="inline mr-2 text-gray-800 text-xs">{dict?.signup?.account}</p>
             <Link href="/login" className="text-blue-400 text-xs">
-              去登录
+              {dict?.signup?.goto}
             </Link>
           </div>
         </section>

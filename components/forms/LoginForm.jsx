@@ -1,7 +1,8 @@
 'use client'
 
-import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginBtn, TextField } from '@/components'
+import { useLanguageContext } from '@/context/LanguageContext'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { logInSchema } from 'utils'
@@ -26,11 +27,14 @@ const LoginForm = props => {
     setFocus('email')
   }, [])
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <TextField
         errors={formErrors.email}
-        placeholder="请输入您的账户邮箱"
+        placeholder={dict.login?.email}
         name="email"
         control={control}
       />
@@ -38,11 +42,11 @@ const LoginForm = props => {
       <TextField
         errors={formErrors.password}
         type="password"
-        placeholder="请输入您的账户密码"
+        placeholder={dict.login?.password}
         name="password"
         control={control}
       />
-      <LoginBtn isLoading={isLoading}>登录</LoginBtn>
+      <LoginBtn isLoading={isLoading}>{dict.login?.login}</LoginBtn>
     </form>
   )
 }

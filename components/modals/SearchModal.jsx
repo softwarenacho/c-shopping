@@ -1,16 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useLanguageContext } from '@/context/LanguageContext'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import {
-  Icons,
   DiscountProduct,
-  ProductPrice,
   EmptySearchList,
-  ShowWrapper,
+  Icons,
   Modal,
+  ProductPrice,
   ResponsiveImage,
+  ShowWrapper,
 } from 'components'
 
 import { truncate } from 'utils'
@@ -25,6 +26,9 @@ const SearchModal = props => {
 
   //? States
   const [search, setSearch] = useState('')
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Assets
   const debouncedSearch = useDebounce(search, 1200)
@@ -61,7 +65,7 @@ const SearchModal = props => {
         onClose={onClose}
         className="flex flex-col h-screen py-3 pl-2 pr-4 bg-white lg:h-fit md:rounded-lg gap-y-3"
       >
-        <Modal.Header onClose={onClose}>搜索</Modal.Header>
+        <Modal.Header onClose={onClose}>{dict.header?.search?.modal?.title}</Modal.Header>
         <Modal.Body>
           <div className="flex flex-row my-3 rounded-md bg-zinc-200/80">
             <div className="p-2">
@@ -69,7 +73,7 @@ const SearchModal = props => {
             </div>
             <input
               type="text"
-              placeholder="搜索"
+              placeholder={dict.header?.search?.modal?.title}
               className="flex-grow p-1 text-left bg-transparent outline-none input focus:border-none"
               value={search}
               onChange={handleChange}
@@ -100,6 +104,7 @@ const SearchModal = props => {
                           src={item.images[0].url}
                           alt={item.title}
                         />
+                        {/* check item title to make it bilingual */}
                         <span className="py-2 text-sm">{truncate(item.title, 70)}</span>
                         <div className="flex justify-between">
                           <div>

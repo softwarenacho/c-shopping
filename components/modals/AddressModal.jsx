@@ -1,29 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useEditUserMutation } from '@/store/services'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import regions from 'china-citys'
+import {
+  Combobox,
+  DisplayError,
+  HandleResponse,
+  Modal,
+  SubmitModalBtn,
+  TextField,
+} from 'components'
+import { useUserInfo } from 'hooks'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { addressSchema } from 'utils'
 
-import { useUserInfo } from 'hooks'
-
-import regions from 'china-citys'
-
-import {
-  TextField,
-  DisplayError,
-  SubmitModalBtn,
-  Combobox,
-  Modal,
-  HandleResponse,
-} from 'components'
-
 const AddressModal = props => {
-  //? Porps
+  //? Props
   const { isShow, onClose, address } = props
 
   //? Assets
@@ -35,6 +30,9 @@ const AddressModal = props => {
   //? State
   const [cities, setCities] = useState([])
   const [areas, setAreas] = useState([])
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Form Hook
   const {
@@ -99,9 +97,9 @@ const AddressModal = props => {
           onClose={onClose}
           className="flex flex-col h-full px-5 py-3 bg-white md:rounded-lg gap-y-5 "
         >
-          <Modal.Header onClose={onClose}>地址管理</Modal.Header>
+          <Modal.Header onClose={onClose}>{dict.header?.address?.modal?.title}</Modal.Header>
           <Modal.Body>
-            <p>请输入您的收货地址</p>
+            <p>{dict.header?.address?.modal?.description}</p>
             <form
               className="flex flex-col justify-between flex-1 pl-4 overflow-y-auto"
               onSubmit={handleSubmit(submitHander)}
@@ -112,7 +110,7 @@ const AddressModal = props => {
                     control={control}
                     name="province"
                     list={AllProvinces}
-                    placeholder="请选择您所在的省份"
+                    placeholder={dict.header?.address?.modal?.province}
                   />
                   <DisplayError errors={formErrors.province?.name} />
                 </div>
@@ -122,7 +120,7 @@ const AddressModal = props => {
                     control={control}
                     name="city"
                     list={cities}
-                    placeholder="请选择您所在的城市"
+                    placeholder={dict.header?.address?.modal?.city}
                   />
                   <DisplayError errors={formErrors.city?.name} />
                 </div>
@@ -132,20 +130,20 @@ const AddressModal = props => {
                     control={control}
                     name="area"
                     list={areas}
-                    placeholder="请选择您所在的区县"
+                    placeholder={dict.header?.address?.modal?.area}
                   />
                   <DisplayError errors={formErrors.area?.name} />
                 </div>
 
                 <TextField
-                  label="街道信息"
+                  label={dict.header?.address?.modal?.street}
                   control={control}
                   errors={formErrors.street}
                   name="street"
                 />
 
                 <TextField
-                  label="邮政编码"
+                  label={dict.header?.address?.modal?.code}
                   control={control}
                   errors={formErrors.postalCode}
                   name="postalCode"
@@ -157,7 +155,7 @@ const AddressModal = props => {
 
               <div className="py-3 border-t-2 border-gray-200 lg:pb-0 flex">
                 <SubmitModalBtn isLoading={isLoading} className="ml-auto">
-                  确定
+                  {dict.header?.address?.modal?.submit}
                 </SubmitModalBtn>
               </div>
             </form>

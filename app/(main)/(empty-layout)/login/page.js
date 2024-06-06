@@ -1,11 +1,10 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-
 import { HandleResponse, LoginForm, Logo } from '@/components'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useLoginMutation } from '@/store/services'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { userLogin } from 'store'
 
@@ -27,6 +26,10 @@ export default function LoginPage() {
       })
     }
   }
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   return (
     <>
       {/*  Handle Login Response */}
@@ -49,14 +52,14 @@ export default function LoginPage() {
           </Link>
           <h1>
             <font className="">
-              <font>登录</font>
+              <font>{dict.login?.login}</font>
             </font>
           </h1>
           <LoginForm isLoading={isLoading} onSubmit={submitHander} />
           <div className="text-xs">
-            <p className="inline mr-2 text-gray-800 text-xs">我还没有账户</p>
+            <p className="inline mr-2 text-gray-800 text-xs">{dict.login?.noAccount}</p>
             <Link href="/register" className="text-blue-400 text-xs">
-              去注册
+              {dict.login?.goto}
             </Link>
           </div>
         </section>
