@@ -1,14 +1,15 @@
 'use client'
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useTitle } from '@/hooks'
+import { useGetCategoriesQuery } from '@/store/services'
+import { BigLoading, PageContainer } from 'components'
+import moment from 'moment-jalaali'
 import Link from 'next/link'
 
-import { BigLoading, PageContainer } from 'components'
-
-import { useGetCategoriesQuery } from '@/store/services'
-import { useTitle } from '@/hooks'
-import moment from 'moment-jalaali'
-
 const DetailsPage = () => {
-  useTitle('分类规格')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+  useTitle(dict.admin ? dict.admin.category.details.title : '分类规格')
   //? Get Categories
   const { categories, isLoading } = useGetCategoriesQuery(undefined, {
     selectFromResult: ({ data, isLoading }) => ({
@@ -27,16 +28,24 @@ const DetailsPage = () => {
 
   return (
     <main>
-      <PageContainer title="分类规格">
+      <PageContainer title={dict.admin?.category.details.title}>
         <section className="p-3 mx-auto mb-10 space-y-8">
           <div className="mx-3 overflow-x-auto mt-7 lg:mx-5 xl:mx-10">
             <table className="w-full whitespace-nowrap">
               <thead className="h-9 bg-emerald-50">
                 <tr className="text-emerald-500">
-                  <th className="px-2 border-gray-100 border-x-2">名称</th>
-                  <th className="px-2 border-gray-100 border-x-2">创建时间</th>
-                  <th className="px-2 border-gray-100 border-x-2">更新时间</th>
-                  <th className="border-gray-100 border-x-2">操作</th>
+                  <th className="px-2 border-gray-100 border-x-2">
+                    {dict.admin?.category.details.name}
+                  </th>
+                  <th className="px-2 border-gray-100 border-x-2">
+                    {dict.admin?.category.details.createTime}
+                  </th>
+                  <th className="px-2 border-gray-100 border-x-2">
+                    {dict.admin?.category.details.updateTime}
+                  </th>
+                  <th className="border-gray-100 border-x-2">
+                    {dict.admin?.category.details.action}
+                  </th>
                 </tr>
               </thead>
               <tbody className="text-gray-600">
@@ -58,7 +67,7 @@ const DetailsPage = () => {
                           href={`/admin/details/${category._id}?category_name=${category.name}`}
                           className="bg-blue-50 text-blue-500 rounded-sm py-1 px-1.5 mx-1.5 inline-block"
                         >
-                          编辑规格
+                          {dict.admin?.category.details.edit}
                         </Link>
                       </td>
                     </tr>

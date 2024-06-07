@@ -1,17 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react'
-
-import { useRouter } from 'next/navigation'
-
-import { showAlert } from 'store'
-
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useTitle, useUrlQuery } from '@/hooks'
 import {
   useCreateDetailsMutation,
   useDeleteDetailsMutation,
   useGetDetailsQuery,
   useUpdateDetailsMutation,
 } from '@/store/services'
-
+import { Tab } from '@headlessui/react'
 import {
   BigLoading,
   Button,
@@ -21,20 +17,21 @@ import {
   HandleResponse,
   PageContainer,
 } from 'components'
-import { Tab } from '@headlessui/react'
-
 import { useAppDispatch, useDisclosure } from 'hooks'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useTitle, useUrlQuery } from '@/hooks'
-
-const tabListNames = [
-  { id: 0, name: '选择类型' },
-  { id: 1, name: '属性' },
-  { id: 2, name: '规格' },
-]
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { showAlert } from 'store'
 
 const DetailsContentPage = ({ params: { id } }) => {
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  const tabListNames = [
+    { id: 0, name: dict.admin?.category.details.select },
+    { id: 1, name: dict.admin?.category.details.attribute },
+    { id: 2, name: dict.admin?.category.details.detail },
+  ]
   //? Assets
   const { back } = useRouter()
   const query = useUrlQuery()
@@ -133,7 +130,7 @@ const DetailsContentPage = ({ params: { id } }) => {
       dispatch(
         showAlert({
           status: 'error',
-          title: '请输入详细信息和属性',
+          title: dict.admin?.category.details.error,
         })
       )
     }
@@ -193,13 +190,13 @@ const DetailsContentPage = ({ params: { id } }) => {
 
   const onErrorDelete = () => confirmDeleteModalHandlers.close()
 
-  useTitle(`品类规格及特点 - ${categoryName ? categoryName : ''}`)
+  useTitle(`${dict.admin?.category.details.detail} - ${categoryName ? categoryName : ''}`)
 
   //? Render(s)
   return (
     <>
       <ConfirmDeleteModal
-        title={`${categoryName}-分类规格`}
+        title={`${categoryName}-${dict.admin?.category.details.title}`}
         isLoading={isLoadingDelete}
         isShow={isShowConfirmDeleteModal}
         onClose={confirmDeleteModalHandlers.close}
@@ -220,7 +217,7 @@ const DetailsContentPage = ({ params: { id } }) => {
       )}
 
       <ConfirmUpdateModal
-        title={`${categoryName}-分类规格`}
+        title={`${categoryName}-${dict.admin?.category.details.title}`}
         isLoading={isLoadingUpdate}
         isShow={isShowConfirmUpdateModal}
         onClose={confirmUpdateModalHandlers.close}
@@ -256,7 +253,9 @@ const DetailsContentPage = ({ params: { id } }) => {
             <BigLoading />
           </div>
         ) : (
-          <PageContainer title={`品类规格及特点 - ${categoryName ? categoryName : ''}`}>
+          <PageContainer
+            title={`${dict.admin?.category.details.details} - ${categoryName ? categoryName : ''}`}
+          >
             <form
               onSubmit={
                 mode === 'create' ? handleSubmit(createHandler) : handleSubmit(updateHandler)
@@ -286,7 +285,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                 <Tab.Panels>
                   <Tab.Panel>
                     <div className="space-y-3">
-                      <p className="mb-2">选择类型：</p>
+                      <p className="mb-2">{dict.admin?.category.details.select}</p>
                       <div className="flex items-center gap-x-1">
                         <input
                           type="radio"
@@ -295,7 +294,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                           className="mr-1"
                           {...register('optionsType')}
                         />
-                        <label htmlFor="none">默认</label>
+                        <label htmlFor="none">{dict.admin?.category.details.default}</label>
                       </div>
                       <div className="flex items-center gap-x-1">
                         <input
@@ -305,7 +304,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                           className="mr-1"
                           {...register('optionsType')}
                         />
-                        <label htmlFor="colors">根据颜色</label>
+                        <label htmlFor="colors">{dict.admin?.category.details.color}</label>
                       </div>
                       <div className="flex items-center gap-x-1">
                         <input
@@ -315,7 +314,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                           className="mr-1"
                           {...register('optionsType')}
                         />
-                        <label htmlFor="sizes">根据尺寸</label>
+                        <label htmlFor="sizes">{dict.admin?.category.details.size}</label>
                       </div>
                     </div>
                   </Tab.Panel>
@@ -347,7 +346,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                       type="submit"
                       isLoading={isLoadingUpdate}
                     >
-                      更新分类规格
+                      {dict.admin?.category.details.update}
                     </Button>
 
                     <Button
@@ -355,7 +354,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                       isLoading={isLoadingDelete}
                       onClick={deleteHandler}
                     >
-                      删除分类规格
+                      {dict.admin?.category.details.delete}
                     </Button>
                   </>
                 ) : (
@@ -365,7 +364,7 @@ const DetailsContentPage = ({ params: { id } }) => {
                     type="submit"
                     isLoading={isLoadingCreate}
                   >
-                    建立分类规格
+                    {dict.admin?.category.details.create}
                   </Button>
                 )}
               </div>

@@ -266,7 +266,26 @@
       "submit": "提交信息",
       "confirmation": "您是否同意更新更改后的",
       "confirm": "确定",
-      "cancel": "取消"
+      "cancel": "取消",
+      "details": {
+        "title": "分类规格",
+        "name": "名称",
+        "createTime": "创建时间",
+        "updateTime": "更新时间",
+        "action": "操作",
+        "edit": "编辑规格",
+        "select": "选择类型",
+        "attribute": "属性",
+        "detail": "规格",
+        "error": "请输入详细信息和属性",
+        "details": "品类规格及特点",
+        "default": "默认",
+        "color": "根据颜色",
+        "size": "根据尺寸",
+        "update": "更新分类规格",
+        "delete": "删除分类规格",
+        "create": "建立分类规格"
+      }
     }, 
     "details":{
       "title": "分类规格"

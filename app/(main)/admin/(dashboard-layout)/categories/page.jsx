@@ -44,9 +44,7 @@ export default function CategoriesPage() {
               >
                 {dict.admin?.category.new}
               </Link>
-            ) : (
-              <div />
-            )}
+            ) : null}
             <Link
               href="/admin/categories/tree"
               className="flex items-center px-3 py-2 text-red-600 border-2 border-red-600 rounded-lg max-w-max gap-x-3"

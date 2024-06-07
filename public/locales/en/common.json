@@ -246,7 +246,7 @@
       "firstLevel": "First Level",
       "secondLevel": "Second Level",
       "thirdLevel": "Third Level",
-      "new": "Add New Folder",
+      "new": "Add New Category",
       "chartBtn": "Chart Display",
       "category": "Category",
       "chart": "Chart",
@@ -267,7 +267,26 @@
       "submit": "Submit",
       "confirmation": "Do you agree to update the changes?",
       "confirm": "Confirm",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "details": {
+        "title": "Category Details",
+        "name": "Name",
+        "createTime": "Create Time",
+        "updateTime": "Update Time",
+        "action": "Create",
+        "edit": "Edit Details",
+        "select": "Select Type",
+        "attribute": "Attribute",
+        "detail": "Detail",
+        "error": "Please enter details and attributes",
+        "details": "Category Details and Features",
+        "default": "Default",
+        "color": "By Color",
+        "size": "By Size",
+        "update": "Update Category Details",
+        "delete": "Delete Category Details",
+        "create": "Create Category Details"
+      }
     }, 
     "details":{
       "title": "Category Details"
