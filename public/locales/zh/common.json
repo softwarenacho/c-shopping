@@ -4,7 +4,8 @@
   "constants": {
     "name": "精选好物",
     "profile": "用户中心",
-    "viewAll": "查看全部"
+    "viewAll": "查看全部",
+    "admin": "管理中心"
   },
   "header": {
     "notLogged": "您尚未登录",
@@ -291,7 +292,13 @@
       "title": "分类规格"
     },
     "user":{
-      "title": "用户管理"
+      "title": "用户管理",
+      "user": "用户",
+      "role": "角色",
+      "name": "名称",
+      "email": "邮箱",
+      "action": "操作",
+      "empty": "用完为空"
     }, 
     "review":{
       "title": "评价管理"

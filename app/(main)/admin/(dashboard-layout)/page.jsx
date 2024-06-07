@@ -3,14 +3,13 @@
 import { DashboardAside } from '@/components'
 import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
-import { siteTitle } from '@/utils'
 import Image from 'next/image'
 
 const AdminPage = () => {
-  useTitle(`${siteTitle}-管理中心`)
-
   // ? Dictionary
   const { dict } = useLanguageContext()
+
+  useTitle(dict.constants ? `${dict.constants?.name} - ${dict.constants?.admin}` : '管理中心')
 
   return (
     <>

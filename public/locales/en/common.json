@@ -4,7 +4,8 @@
   "constants": {
     "name": "C-Shopping",
     "profile": "Profile",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "admin": "Control Center"
   },
   "header": {
     "notLogged": "You are not logged in",
@@ -292,16 +293,22 @@
       "title": "Category Details"
     },
     "user":{
-      "title": "User"
+      "title": "Users",
+      "user": "User",
+      "role": "Role",
+      "name": "Name",
+      "email": "Email",
+      "action": "Actions",
+      "empty": "User list is empty"
     }, 
     "review":{
-      "title": "Review"
+      "title": "Reviews"
     },
     "slider":{
-      "title": "Slider"
+      "title": "Sliders"
     },
     "banner":{
-      "title": "Banner"
+      "title": "Banners"
     }
   }
 }

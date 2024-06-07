@@ -1,9 +1,13 @@
+import { useLanguageContext } from '@/context/LanguageContext'
 import { Person } from 'components'
 import { DeleteIconBtn } from './common/IconBtns'
 
 export default function UsersTable(props) {
   //? Props
   const { deleteUserHandler, users } = props
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Render(s)
   return (
@@ -13,10 +17,10 @@ export default function UsersTable(props) {
           <tr className="text-emerald-500">
             <th></th>
             <th className="border-gray-100 border-x-2">ID</th>
-            <th>角色</th>
-            <th className="border-gray-100 border-x-2">名称</th>
-            <th>邮箱</th>
-            <th className="border-r-2 border-gray-100">操作</th>
+            <th>{dict.admin?.user.role}</th>
+            <th className="border-gray-100 border-x-2">{dict.admin?.user.name}</th>
+            <th>{dict.admin?.user.email}</th>
+            <th className="border-r-2 border-gray-100">{dict.admin?.user.action}</th>
           </tr>
         </thead>
         <tbody className="text-gray-600">

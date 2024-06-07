@@ -1,23 +1,27 @@
 'use client'
 
+import {
+  ConfirmDeleteModal,
+  EmptyUsersList,
+  HandleResponse,
+  PageContainer,
+  Pagination,
+  ShowWrapper,
+  TableSkeleton,
+  UsersTable,
+} from '@/components'
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useChangeRoute, useDisclosure, useTitle } from '@/hooks'
+import { useDeleteUserMutation, useGetUsersQuery } from '@/store/services'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
-import {
-  PageContainer,
-  ShowWrapper,
-  EmptyUsersList,
-  TableSkeleton,
-  UsersTable,
-  ConfirmDeleteModal,
-  HandleResponse,
-  Pagination,
-} from '@/components'
-import { useGetUsersQuery, useDeleteUserMutation } from '@/store/services'
-import { useDisclosure, useChangeRoute, useTitle } from '@/hooks'
-
 export default function UsersPage() {
-  useTitle('用户管理')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin ? dict.admin.user.title : '用户管理')
+
   //? Assets
   const { replace } = useRouter()
   const searchParams = useSearchParams()
@@ -65,7 +69,7 @@ export default function UsersPage() {
   return (
     <>
       <ConfirmDeleteModal
-        title="用户"
+        title={dict.admin?.user.user}
         isLoading={isLoading_delete}
         isShow={isShowConfirmDeleteModal}
         onClose={onCancelUserDelete}
@@ -88,7 +92,7 @@ export default function UsersPage() {
         />
       )}
       <main id="_adminUsers">
-        <PageContainer title="用户管理">
+        <PageContainer title={dict.admin?.user.title}>
           <ShowWrapper
             error={error}
             isError={isError}
