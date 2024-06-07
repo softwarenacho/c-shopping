@@ -1,22 +1,26 @@
+import { useLanguageContext } from '@/context/LanguageContext'
 import { CashOnDelivery, Daysreturn, ExpressDelivery, OriginalProducts, Support } from 'components'
 
 export default function Services() {
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   const services = [
     {
-      name: '快递的可能性',
+      name: dict.footer?.delivery,
       icon: <ExpressDelivery className="w-10 h-10" />,
     },
-    { name: '每周 7 天、每天 24 小时', icon: <Support className="w-10 h-10" /> },
+    { name: dict.footer?.availability, icon: <Support className="w-10 h-10" /> },
     {
-      name: '可以当场付款',
+      name: dict.footer?.pay,
       icon: <CashOnDelivery className="w-10 h-10" />,
     },
     {
-      name: '七日退货保证',
+      name: dict.footer?.sevenDay,
       icon: <Daysreturn className="w-10 h-10" />,
     },
     {
-      name: '保证产品的原创性',
+      name: dict.footer?.original,
       icon: <OriginalProducts className="w-10 h-10" />,
     },
   ]

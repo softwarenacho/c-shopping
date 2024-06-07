@@ -171,5 +171,23 @@
   },
   "popular": {
     "title": "Most Popular Products"
+  },
+  "footer": {
+    "support": "We are available 24/7 to assist you",
+    "wechat": "My WeChat",
+    "top": "Back to Top",
+    "delivery": "Delivery Possibility",
+    "availability": "24/7 Availability",
+    "pay": "Pay on Delivery",
+    "sevenDay": "7-Day Return Guarantee",
+    "original": "Product Originality Guarantee",
+    "contacts": "Contact Information!",
+    "email": "Your Email",
+    "submit": "Submit Your Email",
+    "description": "Online Store - Online Reviews, Selection, and Purchase",
+    "secure": "Secure online shopping requires stores to offer diverse, high-quality, reasonably priced products with a return guarantee in a short period.",
+    "customers": "Online stores have been developing this functionality for years, thus gaining a fixed customer base.",
+    "huang": "Huang Jipeng (Jixiaopeng)",
+    "developer": "Developer"
   }
 }
