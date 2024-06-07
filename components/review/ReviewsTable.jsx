@@ -1,10 +1,13 @@
-import Link from 'next/link'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { EditIconBtn, ResponsiveImage } from 'components'
+import Link from 'next/link'
 
 const ReviewsTable = props => {
   //? Props
   const { reviews } = props
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Render(s)
   return (
@@ -14,9 +17,9 @@ const ReviewsTable = props => {
           <tr className="text-emerald-500">
             <th></th>
             <th className="border-gray-100 border-x-2">ID</th>
-            <th>状态</th>
-            <th className="border-gray-100 border-x-2">用户</th>
-            <th>操作</th>
+            <th>{dict.admin?.review.status}</th>
+            <th className="border-gray-100 border-x-2">{dict.admin?.review.user}</th>
+            <th>{dict.admin?.review.actions}</th>
           </tr>
         </thead>
         <tbody className="text-gray-600">
@@ -47,7 +50,11 @@ const ReviewsTable = props => {
                       }
                     `}
                   >
-                    {review.status === 1 ? '等待确认' : review.status === 2 ? '已确认' : 'none'}
+                    {review.status === 1
+                      ? dict.admin?.review.pending
+                      : review.status === 2
+                        ? dict.admin?.review.confirmed
+                        : 'none'}
                   </span>
                 </td>
                 <td className="p-2">{review.user.name}</td>

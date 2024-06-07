@@ -1,12 +1,9 @@
 'use client'
-import { useRouter } from 'next/navigation'
-
-import { HandleResponse, PageContainer, SliderForm } from 'components'
-
-import { SubmitHandler } from 'react-hook-form'
-
-import { useCreateSliderMutation } from '@/store/services'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle, useUrlQuery } from '@/hooks'
+import { useCreateSliderMutation } from '@/store/services'
+import { HandleResponse, PageContainer, SliderForm } from 'components'
+import { useRouter } from 'next/navigation'
 
 const CreateSliderPage = () => {
   //? Assets
@@ -29,7 +26,10 @@ const CreateSliderPage = () => {
 
   const onSuccess = () => back()
 
-  useTitle('新增类别滑块' + ' ' + categoryName)
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin?.slider.added + ' - ' + categoryName)
 
   return (
     <>
@@ -44,7 +44,7 @@ const CreateSliderPage = () => {
       )}
 
       <main>
-        <PageContainer title={'新增类别滑块' + ' ' + categoryName}>
+        <PageContainer title={dict.admin?.slider.added + ' - ' + categoryName}>
           <SliderForm mode="create" isLoadingCreate={isLoading} createHandler={createHandler} />
         </PageContainer>
       </main>

@@ -1,16 +1,17 @@
 'use client'
 
-import { useEffect } from 'react'
-import Image from 'next/image'
-
-import { Button, ControlledCheckbox, TextField, UploadImage } from 'components'
-
-import { useForm } from 'react-hook-form'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import { Button, ControlledCheckbox, TextField, UploadImage } from 'components'
+import Image from 'next/image'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import { sliderSchema } from 'utils'
 
 const SliderForm = props => {
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Props
   const {
     mode,
@@ -62,10 +63,16 @@ const SliderForm = props => {
         <form
           onSubmit={mode === 'create' ? handleSubmit(createHandler) : handleSubmit(updateHandler)}
         >
-          <TextField label="滑块标题" control={control} name="title" errors={formErrors?.title} />
+          <TextField
+            label={`${dict.admin?.slider.name}${dict.admin?.lang === '中文' ? '' : ' '}${dict.admin
+              ?.slider.titleTH}`}
+            control={control}
+            name="title"
+            errors={formErrors?.title}
+          />
 
           <TextField
-            label="链接地址"
+            label={dict.admin?.slider.link}
             direction="ltr"
             control={control}
             name="uri"
@@ -73,7 +80,7 @@ const SliderForm = props => {
           />
 
           <TextField
-            label="图片地址"
+            label={dict.admin?.slider.url}
             direction="ltr"
             control={control}
             name="image.url"
@@ -83,7 +90,11 @@ const SliderForm = props => {
           <UploadImage folder="/sliders" handleAddUploadedImageUrl={handleAddUploadedImageUrl} />
 
           <div className="w-44 my-3">
-            <ControlledCheckbox name="isPublic" control={control} label="发布状态" />
+            <ControlledCheckbox
+              name="isPublic"
+              control={control}
+              label={dict.admin?.slider.status}
+            />
           </div>
 
           {sliderSchema.isValidSync(watch()) && (
@@ -103,11 +114,11 @@ const SliderForm = props => {
                   type="submit"
                   isLoading={isLoadingUpdate}
                 >
-                  更新
+                  {dict.admin?.slider.update}
                 </Button>
 
                 <Button className="rounded-3xl" isLoading={isLoadingDelete} onClick={deleteHandler}>
-                  删除
+                  {dict.admin?.slider.delete}
                 </Button>
               </>
             ) : (
@@ -117,7 +128,7 @@ const SliderForm = props => {
                 type="submit"
                 isLoading={isLoadingCreate}
               >
-                提交
+                {dict.admin?.slider.submit}
               </Button>
             )}
           </div>

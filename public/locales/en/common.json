@@ -302,10 +302,30 @@
       "empty": "User list is empty"
     }, 
     "review":{
-      "title": "Reviews"
+      "title": "Reviews",
+      "status": "Status",
+      "user": "User",
+      "action": "Actions",
+      "pending": "Pending Confirmation",
+      "confirmed": "Confirmed"
     },
     "slider":{
-      "title": "Sliders"
+      "title": "Sliders",
+      "name": "Slider",
+      "subset": "Subset",
+      "edit": "Edit",
+      "new": "Add New Slider",
+      "image": "Image",
+      "titleTH": "Title",
+      "categoryName": "Category Name",
+      "action": "Actions",
+      "added": "Category Slider",
+      "link": "Link URL",
+      "url": "Image URL",
+      "status": "Published",
+      "update": "Update",
+      "delete": "Delete",
+      "submit": "Submit"
     },
     "banner":{
       "title": "Banners"

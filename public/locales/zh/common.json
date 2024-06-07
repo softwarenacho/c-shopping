@@ -301,10 +301,30 @@
       "empty": "用完为空"
     }, 
     "review":{
-      "title": "评价管理"
+      "title": "评价管理",
+      "status": "状态",
+      "user": "用户",
+      "action": "操作",
+      "pending": "等待确认",
+      "confirmed": "已确认"
     },
     "slider":{
-      "title": "滑块管理"
+      "title": "滑块管理",
+      "name": "滑块管理",
+      "subset": "子集",
+      "edit": "编辑",
+      "new": "添加新滑块",
+      "image": "图片",
+      "titleTH": "标题",
+      "categoryName": "分类名称",
+      "action": "操作",
+      "added": "新增类别滑块",
+      "link": "链接地址",
+      "url": "图片地址",
+      "status": "发布状态",
+      "update": "更新",
+      "delete": "删除",
+      "submit": "提交"
     },
     "banner":{
       "title": "横幅管理"
