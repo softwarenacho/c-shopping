@@ -1,12 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
-
-import { AddIconBtn, DeleteIconBtn } from 'components'
-
-import { Control, UseFormRegister, useFieldArray } from 'react-hook-form'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { nanoid } from '@reduxjs/toolkit'
+import { AddIconBtn, DeleteIconBtn } from 'components'
+import { useRef } from 'react'
+import { useFieldArray } from 'react-hook-form'
 
 const AddColors = props => {
   //? Props
@@ -40,10 +38,13 @@ const AddColors = props => {
     }
   }
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <div className="text-sm space-y-1.5">
-      <span>颜色</span>
+      <span>{dict.admin?.create.color}</span>
       <div className="w-full max-w-2xl mx-auto space-y-3">
         <div className="flex items-center gap-x-2">
           <AddIconBtn onClick={handleAddToColor} />
@@ -51,7 +52,7 @@ const AddColors = props => {
             type="text"
             className="inline-block outline-none input w-44"
             name="name"
-            placeholder="颜色名称"
+            placeholder={dict.admin?.create.colorName}
             ref={inputTextRef}
           />
           <input

@@ -1,41 +1,30 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useGetDetailsQuery } from '@/store/services'
-
 import { Tab } from '@headlessui/react'
 import {
   AddColors,
-  SelectCategories,
   AddSizes,
   Button,
-  TextField,
   ImageList,
+  SelectCategories,
   TextArea,
+  TextField,
 } from 'components'
-
-const tabListNames = [
-  { id: 0, name: '标题｜介绍' },
-  { id: 1, name: '图片' },
-  { id: 2, name: '价格' },
-  { id: 3, name: '分组' },
-  { id: 4, name: '子产品' },
-  { id: 5, name: '属性' },
-  { id: 6, name: '规格' },
-]
-const initialSelectedCategories = {
-  levelOne: {},
-  levelTwo: {},
-  levelThree: {},
-}
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 const ProductsForm = props => {
   //? Props
   const { mode, createHandler, isLoadingCreate, isLoadingUpdate, updateHandler, selectedProduct } =
     props
+
+  const initialSelectedCategories = {
+    levelOne: {},
+    levelTwo: {},
+    levelThree: {},
+  }
 
   //? States
   const [isDetailsSkip, setIsDetailsSkip] = useState(true)
@@ -94,6 +83,20 @@ const ProductsForm = props => {
         },
       })
   }
+
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  const tabListNames = [
+    { id: 0, name: `${dict.admin?.create.tab}｜${dict.admin?.create.description}` },
+    { id: 1, name: dict.admin?.create.image },
+    { id: 2, name: dict.admin?.create.price },
+    { id: 3, name: dict.admin?.create.group },
+    { id: 4, name: dict.admin?.create.subProducts },
+    { id: 5, name: dict.admin?.create.attributes },
+    { id: 6, name: dict.admin?.create.specifications },
+  ]
+
   return (
     <section className="p-3 md:px-3 xl:px-8 2xl:px-10">
       <form
@@ -108,13 +111,11 @@ const ProductsForm = props => {
               <Tab
                 key={item.id}
                 className={({ selected }) =>
-                  `tab
-                         ${
-                           selected
-                             ? 'bg-white shadow'
-                             : 'text-blue-400 hover:bg-white/[0.12] hover:text-blue-600'
-                         }
-                        `
+                  `tab ${
+                    selected
+                      ? 'bg-white shadow'
+                      : 'text-blue-400 hover:bg-white/[0.12] hover:text-blue-600'
+                  }`
                 }
               >
                 {item.name}
@@ -124,9 +125,13 @@ const ProductsForm = props => {
 
           <Tab.Panels>
             <Tab.Panel>
-              <TextField label="标题" name="title" control={control} />
+              <TextField label={dict.admin?.create.tab} name="title" control={control} />
 
-              <TextArea name="description" control={control} label="介绍" />
+              <TextArea
+                name="description"
+                control={control}
+                label={dict.admin?.create.description}
+              />
             </Tab.Panel>
 
             <Tab.Panel>
@@ -136,14 +141,14 @@ const ProductsForm = props => {
             <Tab.Panel>
               <div className="space-y-4 md:flex md:gap-x-2 md:items-baseline md:justify-evenly">
                 <TextField
-                  label="价格"
+                  label={dict.admin?.create.price}
                   name="price"
                   control={control}
                   type="number"
                   inputMode="numeric"
                 />
                 <TextField
-                  label="存货"
+                  label={dict.admin?.create.inventory}
                   name="inStock"
                   control={control}
                   type="number"
@@ -151,7 +156,7 @@ const ProductsForm = props => {
                 />
 
                 <TextField
-                  label="折扣百分比"
+                  label={dict.admin?.create.discount}
                   name="discount"
                   control={control}
                   type="number"
@@ -171,7 +176,7 @@ const ProductsForm = props => {
 
             <Tab.Panel>
               {isDetailsSkip && mode === 'create' && (
-                <span className="text-red-600">首先选择类别</span>
+                <span className="text-red-600">{dict.admin?.create.category}</span>
               )}
 
               {details?.data?.optionsType === 'colors' || getValues('colors')?.length > 0 ? (
@@ -179,22 +184,22 @@ const ProductsForm = props => {
               ) : details?.data?.optionsType === 'sizes' || getValues('sizes')?.length > 0 ? (
                 <AddSizes control={control} register={register} />
               ) : details?.data?.optionsType === 'none' ? (
-                <span className="text-red-600">没有产品</span>
+                <span className="text-red-600">{dict.admin?.create.noProducts}</span>
               ) : null}
             </Tab.Panel>
 
             <Tab.Panel>
               {isDetailsSkip && mode === 'create' && (
-                <span className="text-red-600">首先选择类别</span>
+                <span className="text-red-600">{dict.admin?.create.category}</span>
               )}
               {watch('info') && (
                 <div className="text-sm space-y-1.5">
-                  <span>属性</span>
+                  <span>{dict.admin?.create.attributes}</span>
                   <table className="w-full max-w-2xl mx-auto">
                     <thead className="bg-emerald-50 text-emerald-500">
                       <tr className="">
-                        <th className="w-2/5  p-2.5">名称</th>
-                        <th>值</th>
+                        <th className="w-2/5  p-2.5">{dict.admin?.create.name}</th>
+                        <th>{dict.admin?.create.value}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -223,16 +228,16 @@ const ProductsForm = props => {
             </Tab.Panel>
             <Tab.Panel>
               {isDetailsSkip && mode === 'create' && (
-                <span className="text-red-600">首先选择类别</span>
+                <span className="text-red-600">{dict.admin?.create.category}</span>
               )}
               {watch('specification') && (
                 <div className="text-sm space-y-1.5">
-                  <span>规格</span>
+                  <span>{dict.admin?.create.specifications}</span>
                   <table className="w-full max-w-2xl mx-auto">
                     <thead className="bg-fuchsia-50 text-fuchsia-500 ">
                       <tr>
-                        <th className="w-2/5 p-2.5">名称</th>
-                        <th>值</th>
+                        <th className="w-2/5 p-2.5">{dict.admin?.create.name}</th>
+                        <th>{dict.admin?.create.value}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -269,7 +274,7 @@ const ProductsForm = props => {
             type="submit"
             isLoading={isLoadingUpdate}
           >
-            更新信息
+            {dict.admin?.create.update}
           </Button>
         ) : (
           <Button
@@ -278,7 +283,7 @@ const ProductsForm = props => {
             type="submit"
             isLoading={isLoadingCreate}
           >
-            提交信息
+            {dict.admin?.create.submit}
           </Button>
         )}
       </form>

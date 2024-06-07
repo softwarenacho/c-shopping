@@ -1,11 +1,10 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
-import { HandleResponse, PageContainer, ProductsForm } from 'components'
-
-import { useCreateProductMutation } from '@/store/services'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
+import { useCreateProductMutation } from '@/store/services'
+import { HandleResponse, PageContainer, ProductsForm } from 'components'
+import { useRouter } from 'next/navigation'
 
 const CreateProductPage = () => {
   useTitle('商品新增')
@@ -26,6 +25,9 @@ const CreateProductPage = () => {
     push('/admin/products')
   }
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   return (
     <>
       {(isSuccess || isError) && (
@@ -39,7 +41,7 @@ const CreateProductPage = () => {
       )}
 
       <main>
-        <PageContainer title="商品新增">
+        <PageContainer title={dict.admin?.create.title}>
           <ProductsForm mode="create" isLoadingCreate={isLoading} createHandler={createHandler} />
         </PageContainer>
       </main>

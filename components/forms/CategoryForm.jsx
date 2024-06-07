@@ -1,10 +1,10 @@
 'use client'
 
+import { useLanguageContext } from '@/context/LanguageContext'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { TextField, Button, UploadImage } from 'components'
+import { Button, TextField, UploadImage } from 'components'
 import Image from 'next/image'
 import { useEffect } from 'react'
-
 import { useForm } from 'react-hook-form'
 import { categorySchema } from 'utils'
 
@@ -47,22 +47,36 @@ const CategoryForm = props => {
   //? Handlers
   const handleAddUploadedImageUrl = url => setValue('image', url)
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   return (
     <section className="p-3 md:px-3 xl:px-8 2xl:px-10">
       <form
         className="flex flex-col justify-between flex-1 overflow-y-auto gap-y-5"
         onSubmit={mode === 'create' ? handleSubmit(createHandler) : handleSubmit(updateHandler)}
       >
-        <TextField label="分类名称" control={control} errors={formErrors.name} name="name" />
+        <TextField
+          label={`${dict.admin?.category.category}${dict.lang === '中文' ? '' : ' '}${dict.admin
+            ?.category.name}`}
+          control={control}
+          errors={formErrors.name}
+          name="name"
+        />
 
         <TextField
-          label="路径（英文字母）"
+          label={dict.admin?.category.path}
           control={control}
           errors={formErrors.slug}
           name="slug"
         />
 
-        <TextField label="图片地址" control={control} errors={formErrors.image} name="image" />
+        <TextField
+          label={dict.admin?.category.image}
+          control={control}
+          errors={formErrors.image}
+          name="image"
+        />
 
         <UploadImage folder="/icons" handleAddUploadedImageUrl={handleAddUploadedImageUrl} />
 
@@ -84,7 +98,7 @@ const CategoryForm = props => {
           <div className="flex justify-evenly">
             <div className="flex flex-col space-y-3">
               <label className="text-field__label" htmlFor="colors.start">
-                开始颜色
+                {dict.admin?.category.startColor}
               </label>
               <input
                 className="w-40 h-10"
@@ -96,7 +110,7 @@ const CategoryForm = props => {
 
             <div className="flex flex-col space-y-3">
               <label className="text-field__label" htmlFor="colors.end">
-                结束颜色
+                {dict.admin?.category.endColor}
               </label>
               <input
                 className="w-40 h-10"
@@ -116,7 +130,7 @@ const CategoryForm = props => {
               type="submit"
               isLoading={isLoading}
             >
-              更新信息
+              {dict.admin?.category.update}
             </Button>
           ) : (
             <Button
@@ -125,7 +139,7 @@ const CategoryForm = props => {
               isLoading={isLoading}
               isRounded={true}
             >
-              提交信息
+              {dict.admin?.category.submit}
             </Button>
           )}
         </div>

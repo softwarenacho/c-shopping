@@ -1,51 +1,55 @@
+import { useLanguageContext } from '@/context/LanguageContext'
+import { BoxLink, Icons, LogoChina, LogoH, Logout } from 'components'
 import Link from 'next/link'
-
-import { Icons, BoxLink, Logout, LogoH } from 'components'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
 export default function ProfileAside() {
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   const profilePaths = [
     {
-      name: '商品新增',
+      name: dict.admin?.create.title,
       Icon: Icons.Plus,
       path: '/admin/products/create',
     },
     {
-      name: '商品管理',
+      name: dict.admin?.products.title,
       Icon: Icons.Save,
       path: '/admin/products',
     },
     {
-      name: '订单管理',
+      name: dict.admin?.orders.title,
       Icon: Icons.Bag,
       path: '/admin/orders',
     },
     {
-      name: '分类管理',
+      name: dict.admin?.category.title,
       Icon: Icons.Category,
       path: '/admin/categories',
     },
     {
-      name: '分类规格',
+      name: dict.admin?.details.title,
       Icon: Icons.Location,
       path: '/admin/details',
     },
     {
-      name: '用户管理',
+      name: dict.admin?.user.title,
       Icon: Icons.Users,
       path: '/admin/users',
     },
     {
-      name: '评价管理',
+      name: dict.admin?.review.title,
       Icon: Icons.Comment,
       path: '/admin/reviews',
     },
     {
-      name: '滑块管理',
+      name: dict.admin?.slider.title,
       Icon: Icons.Slider,
       path: '/admin/sliders',
     },
     {
-      name: 'banner管理',
+      name: dict.admin?.banner.title,
       Icon: Icons.Image,
       path: '/admin/banners',
     },
@@ -54,10 +58,14 @@ export default function ProfileAside() {
   //? Render(s)
   return (
     <aside className="sticky mt-6 lg:border lg:border-gray-200 lg:rounded-md lg:pt-4 min-w-max top-6">
-      <Link passHref href="/admin">
-        <LogoH className="w-40 h-12 mx-auto" />
+      <Link passHref href="/">
+        {dict.lang === '中文' ? (
+          <LogoChina className="w-40 h-12 mx-auto" />
+        ) : (
+          <LogoH className="w-40 h-12 mx-auto" />
+        )}
       </Link>
-
+      <LanguageSwitcher />
       <div className="mt-4">
         {profilePaths.map((item, index) => (
           <BoxLink key={index} path={item.path} name={item.name}>

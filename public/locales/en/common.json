@@ -23,7 +23,7 @@
       "select": "Please select your address",
       "send": "Send",
       "modal": {
-        "title": "Address Management",
+        "title": "Addresses",
         "description": "Please enter your delivery address",
         "province": "Please select your province",
         "city": "Please select your city",
@@ -189,5 +189,100 @@
     "customers": "Online stores have been developing this functionality for years, thus gaining a fixed customer base.",
     "huang": "Huang Jipeng (Jixiaopeng)",
     "developer": "Developer"
+  },
+  "admin": {
+    "charts": "Charts",
+    "analytics": "Analytics",
+    "development": "Under Development",
+    "create": {
+      "title": "Add Product",
+      "tab": "Title",
+      "description": "Description",
+      "image": "Image",
+      "price": "Price",
+      "group": "Group",
+      "subProducts": "SubProducts",
+      "attributes": "Attributes",
+      "specifications": "Specifications",
+      "inventory": "Inventory",
+      "discount": "Discount %",
+      "category": "Please select a category first",
+      "noProducts": "No products",
+      "name": "Name",
+      "value": "Value",
+      "update": "Update Information",
+      "submit": "Submit Information",
+      "size": "Size",
+      "color": "Color",
+      "colorName": "Color Name"
+    },
+    "upload": {
+      "select": "Select a file",
+      "validation": "The selected file must be an image",
+      "limit": "The size of the image should not exceed 5MB",
+      "success": "Upload successful",
+      "noImage": "No image uploaded",
+      "plugin": "Image Upload",
+      "uploading": "Uploading...",
+      "upload": "Upload"
+    },
+    "products":{
+      "title": "Products",
+      "this": "This Product",
+      "reset": "Reset Filter",
+      "product": "Product Name...",
+      "filter": "Filter",
+      "name": "Name",
+      "price": "Price",
+      "sales": "Sales",
+      "inventory": "Inventory",
+      "action": "Action"
+    },
+    "orders":{
+      "title": "Orders"
+    },
+    "category":{
+      "title": "Categories",
+      "firstLevel": "First Level",
+      "secondLevel": "Second Level",
+      "thirdLevel": "Third Level",
+      "new": "Add New Folder",
+      "chartBtn": "Chart Display",
+      "category": "Category",
+      "chart": "Chart",
+      "name": "Name",
+      "action": "Action",
+      "subcategories": "Subcategories",
+      "edit": "Edit",
+      "specifications": "Specifications and Features",
+      "slider": "Slider",
+      "banner": "Banner",
+      "empty": "No categories yet",
+      "path": "Path (English letters)",
+      "image": "Image URL",
+      "startColor": "Start Color",
+      "endColor": "End Color",
+      "create": "Create",
+      "update": "Update",
+      "submit": "Submit",
+      "confirmation": "Do you agree to update the changes?",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }, 
+    "details":{
+      "title": "Category Details"
+    },
+    "user":{
+      "title": "User"
+    }, 
+    "review":{
+      "title": "Review"
+    },
+    "slider":{
+      "title": "Slider"
+    },
+    "banner":{
+      "title": "Banner"
+    }
   }
 }

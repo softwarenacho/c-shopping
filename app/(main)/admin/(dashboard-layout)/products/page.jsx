@@ -1,16 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import {
   useDeleteProductMutation,
   useGetCategoriesQuery,
   useGetProductsQuery,
 } from '@/store/services'
-
 import {
   ConfirmDeleteModal,
   DeleteIconBtn,
@@ -23,12 +18,19 @@ import {
   ShowWrapper,
   TableSkeleton,
 } from 'components'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
-import { useDisclosure, useChangeRoute } from 'hooks'
 import { useTitle, useUrlQuery } from '@/hooks'
+import { useChangeRoute, useDisclosure } from 'hooks'
 
 const Products = () => {
-  useTitle('商品管理')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin?.products.title || '商品管理')
+
   //? Assets
   const { push } = useRouter()
   const query = useUrlQuery()
@@ -60,7 +62,7 @@ const Products = () => {
   const [search, setSearch] = useState('')
   const [selectedCategories, setSelectedCategories] = useState(initialSelectedCategories)
 
-  //? Querirs
+  //? Queries
   //*    Get Products Data
   const { data, isFetching, error, isError, refetch, isSuccess } = useGetProductsQuery({
     page,
@@ -175,7 +177,7 @@ const Products = () => {
   return (
     <>
       <ConfirmDeleteModal
-        title="该商品"
+        title={dict.admin?.products.this}
         isLoading={isLoadingDelete}
         isShow={isShowConfirmDeleteModal}
         onClose={confirmDeleteModalHandlers.close}
@@ -196,7 +198,7 @@ const Products = () => {
       )}
 
       <main>
-        <PageContainer title="商品管理">
+        <PageContainer title={dict.admin?.products.title}>
           <section className="p-3 space-y-7" id="_adminProducts">
             <form className="max-w-4xl mx-auto space-y-5" onSubmit={handleSubmit}>
               <SelectCategories
@@ -210,18 +212,18 @@ const Products = () => {
                   className="p-2 text-white border flex-center gap-x-2 min-w-max"
                   onClick={handleRemoveSearch}
                 >
-                  <span>重制筛选</span>
+                  <span>{dict.admin?.products.reset}</span>
                   <Icons.Close className="icon" />
                 </button>
                 <input
                   type="text"
-                  placeholder="商品名称..."
+                  placeholder={dict.admin?.products.product}
                   className="flex-grow p-2 text-left input"
                   value={search}
                   onChange={handleSearchChange}
                 />
                 <button type="submit" className="p-2 border flex-center gap-x-2 min-w-max">
-                  <span>过滤筛选</span>
+                  <span>{dict.admin?.products.filter}</span>
                   <Icons.Search className="icon" />
                 </button>
               </div>
@@ -241,11 +243,13 @@ const Products = () => {
                   <thead className="h-9 bg-emerald-50">
                     <tr className="text-emerald-500">
                       <th className="border-gray-50 border-x-2">ID</th>
-                      <th className="border-gray-100 border-x-2">名称</th>
-                      <th className="border-gray-100 border-x-2">价格</th>
-                      <th className="border-gray-100 border-x-2">销量</th>
-                      <th className="border-gray-100 border-x-2">库存</th>
-                      <th className="border-r-2 border-gray-100">操作</th>
+                      <th className="border-gray-100 border-x-2">{dict.admin?.products.name}</th>
+                      <th className="border-gray-100 border-x-2">{dict.admin?.products.price}</th>
+                      <th className="border-gray-100 border-x-2">{dict.admin?.products.sales}</th>
+                      <th className="border-gray-100 border-x-2">
+                        {dict.admin?.products.inventory}
+                      </th>
+                      <th className="border-r-2 border-gray-100">{dict.admin?.products.action}</th>
                     </tr>
                   </thead>
                   <tbody className="text-gray-600">

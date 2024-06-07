@@ -189,5 +189,99 @@
     "customers": "在线商店多年来一直在努力开发的功能，并通过这种方式拥有了固定客户",
     "huang": "黄继鹏（继小鹏）",
     "developer": "开发"
+  },
+  "admin": {
+    "charts": "图表",
+    "analytics": "情况分析",
+    "development": "开发中",
+    "create": {
+      "title": "商品新增",
+      "tab": "标题",
+      "description": "介绍",
+      "image": "图片",
+      "price": "价格",
+      "group": "分组",
+      "subProducts": "子产品",
+      "attributes": "属性",
+      "specifications": "规格",
+      "inventory": "存货",
+      "discount": "折扣百分比",
+      "category": "首先选择类别",
+      "noProducts": "没有产品",
+      "name": "名称",
+      "value": "值",
+      "update": "更新信息",
+      "submit": "提交信息",
+      "size": "大小",
+      "color": "颜色",
+      "colorName": "颜色名称"
+    },
+    "upload": {
+      "select": "请选择一个文件",
+      "validation": "所选文件必须是图像",
+      "limit": "图像的大小不应超过5 MB",
+      "success": "上传成功",
+      "noImage": "未上载图像",
+      "plugin": "图像插件",
+      "uploading": "正在上传...",
+      "upload": "上传"
+    },
+    "products":{
+      "title": "商品管理",
+      "this": "该商品",
+      "reset": "重制筛选",
+      "product": "商品名称...",
+      "filter": "过滤筛选",
+      "name": "名称",
+      "price": "价格",
+      "sales": "销量",
+      "inventory": "库存",
+      "action": "操作"
+    },
+    "orders":{
+      "title": "订单管理"
+    },
+    "category":{
+      "title": "分类管理",
+      "firstLevel": "一级分类",
+      "secondLevel": "二级分类",
+      "thirdLevel": "三级分类",
+      "new": "添加新文件夹",
+      "chartBtn": "图表展示",
+      "category": "分类",
+      "chart": "图表",
+      "name": "名称",
+      "action": "操作",
+      "subcategories": "子类",
+      "edit": "编辑",
+      "specifications": "规格和特点",
+      "slider": "滑块",
+      "banner": "横幅",
+      "empty": "还没有分类",
+      "path": "路径（英文字母）",
+      "image": "图片地址",
+      "startColor": "开始颜色",
+      "endColor": "结束颜色",
+      "update": "更新信息",
+      "submit": "提交信息",
+      "confirmation": "您是否同意更新更改后的",
+      "confirm": "确定",
+      "cancel": "取消"
+    }, 
+    "details":{
+      "title": "分类规格"
+    },
+    "user":{
+      "title": "用户管理"
+    }, 
+    "review":{
+      "title": "评价管理"
+    },
+    "slider":{
+      "title": "滑块管理"
+    },
+    "banner":{
+      "title": "横幅管理"
+    }
   }
 }

@@ -1,12 +1,21 @@
 'use client'
 
 import { BigLoading, CategoryForm, HandleResponse, PageContainer } from '@/components'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle, useUrlQuery } from '@/hooks'
 import { useCreateCategoryMutation, useGetCategoriesQuery } from '@/store/services'
 import { useRouter } from 'next/navigation'
 
 export default function CategoriesCreatePage() {
-  useTitle('创建分类')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+  useTitle(
+    dict.admin
+      ? `${dict.admin.category.create}${dict.lang === '中文' ? '' : ' '}${
+          dict.admin.category.category
+        }`
+      : '创建分类'
+  )
   //? Assets
   const { push } = useRouter()
   const query = useUrlQuery()
@@ -62,7 +71,10 @@ export default function CategoriesCreatePage() {
         </div>
       ) : (
         <main>
-          <PageContainer title="创建分类">
+          <PageContainer
+            title={`${dict.admin?.category.create}${dict.lang === '中文' ? '' : ' '}${dict.admin
+              ?.category.category}`}
+          >
             <CategoryForm
               mode="create"
               isLoading={isLoading}

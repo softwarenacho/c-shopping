@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
-import { SelectBox } from 'components'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useGetCategoriesQuery } from '@/store/services'
+import { SelectBox } from 'components'
+import { useEffect, useState } from 'react'
 
 const SelectCategories = props => {
   //? Props
@@ -62,6 +61,9 @@ const SelectCategories = props => {
       levelThree: category,
     })
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <div className="flex flex-wrap justify-evenly gap-y-6">
@@ -69,21 +71,21 @@ const SelectCategories = props => {
         value={selectedCategories.levelOne}
         list={levelOneCategories}
         onChange={handleLevelOneChange}
-        placeholder="一级分类"
+        placeholder={dict.admin?.category.firstLevel}
       />
 
       <SelectBox
         value={selectedCategories.levelTwo}
         list={levelTwoCategories}
         onChange={handleLevelTwoChange}
-        placeholder="二级分类"
+        placeholder={dict.admin?.category.secondLevel}
       />
 
       <SelectBox
         value={selectedCategories.levelThree}
         list={levelThreeCategories}
         onChange={handleLevelThreeChange}
-        placeholder="三级分类"
+        placeholder={dict.admin?.category.thirdLevel}
       />
     </div>
   )
