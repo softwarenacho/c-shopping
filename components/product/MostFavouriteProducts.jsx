@@ -1,9 +1,9 @@
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useGetProductsQuery } from '@/store/services'
+import { DiscountProduct, Icons, ProductPrice, ResponsiveImage, Skeleton } from 'components'
 import Link from 'next/link'
 
-import { DiscountProduct, ProductPrice, Icons, ResponsiveImage, Skeleton } from 'components'
-import { useGetProductsQuery } from '@/store/services'
-
-const MostFavouraiteProducts = props => {
+const MostFavouriteProducts = props => {
   //? Props
   const { categorySlug } = props
 
@@ -20,13 +20,15 @@ const MostFavouraiteProducts = props => {
     }
   )
 
-  //? Render(s)
+  //? Dictionary
+  const { dict } = useLanguageContext()
 
+  //? Render(s)
   return (
     <section className="px-3">
       <div className="flex items-center mb-3 space-x-2">
         <Icons.Heart className="icon text-amber-400" />
-        <h4 className="text-xl">最受欢迎的商品</h4>
+        <h4 className="text-xl">{dict.popular?.title}</h4>
       </div>
       <div className="grid grid-cols-2 gap-1 md:gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {isLoading
@@ -88,4 +90,4 @@ const MostFavouraiteProducts = props => {
   )
 }
 
-export default MostFavouraiteProducts
+export default MostFavouriteProducts

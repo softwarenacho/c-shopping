@@ -1,9 +1,8 @@
-import Link from 'next/link'
-
-import { Icons, ResponsiveImage, Skeleton } from 'components'
-
-import { truncate } from 'utils'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useGetProductsQuery } from '@/store/services'
+import { Icons, ResponsiveImage, Skeleton } from 'components'
+import Link from 'next/link'
+import { truncate } from 'utils'
 
 const BestSellsSlider = props => {
   //? Props
@@ -23,12 +22,15 @@ const BestSellsSlider = props => {
     }
   )
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <section className="px-3">
       <div className="flex items-center mb-3 space-x-2">
         <Icons.Check className="w-7 h-7 text-amber-400" />
-        <h4 className="text-xl">最畅销商品</h4>
+        <h4 className="text-xl">{dict.bestSellers?.title}</h4>
       </div>
 
       <div className="grid grid-cols-[repeat(5,280px)] md:grid-cols-[repeat(5,300px)] grid-rows-3 xl:grid-cols-[repeat(5,330px)] grid-flow-col overflow-x-auto  gap-x-2 p-2">

@@ -1,17 +1,16 @@
 import { db } from '@/helpers'
 
-import { Category, Banner, Slider } from 'models'
-
+import { siteTitle } from '@/utils'
 import {
   BannerOne,
   BannerTwo,
   BestSellsSlider,
   Categories,
   DiscountSlider,
-  MostFavouraiteProducts,
   Slider as MainSlider,
+  MostFavouriteProducts,
 } from 'components'
-import { siteTitle } from '@/utils'
+import { Banner, Category, Slider } from 'models'
 
 // export const revalidate = 20
 export const dynamic = 'force-dynamic'
@@ -74,7 +73,7 @@ const MainCategory = async ({ params: { category } }) => {
 
         <BannerTwo data={bannerTwoType} />
 
-        <MostFavouraiteProducts categorySlug={currentCategory.slug} />
+        <MostFavouriteProducts categorySlug={currentCategory.slug} />
       </div>
     </main>
   )

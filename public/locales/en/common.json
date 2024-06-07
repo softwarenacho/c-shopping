@@ -3,7 +3,8 @@
   "currency": "$",
   "constants": {
     "name": "C-Shopping",
-    "profile": "Profile"
+    "profile": "Profile",
+    "viewAll": "View All"
   },
   "header": {
     "notLogged": "You are not logged in",
@@ -164,5 +165,11 @@
       "record": "Phone Number Record and Edit",
       "enterPhone": "Please enter your phone number"
     }
+  },
+  "bestSellers": {
+    "title": "Best Sellers"
+  },
+  "popular": {
+    "title": "Most Popular Products"
   }
 }

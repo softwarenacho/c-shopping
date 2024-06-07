@@ -1,5 +1,4 @@
 // import { Metadata } from 'next'
-import { bannerRepo, categoryRepo, sliderRepo } from '@/helpers'
 import {
   BannerOne,
   BannerTwo,
@@ -7,8 +6,9 @@ import {
   Categories,
   DiscountSlider,
   Slider as MainSlider,
-  MostFavouraiteProducts,
+  MostFavouriteProducts,
 } from '@/components'
+import { bannerRepo, categoryRepo, sliderRepo } from '@/helpers'
 import { enSiteTitle, siteTitle } from '@/utils'
 
 export const metadata = {
@@ -60,7 +60,7 @@ export default async function Home({ searchParams }) {
         <BannerOne data={bannerOneType} />
         <BestSellsSlider categorySlug={currentCategory?.slug} />
         <BannerTwo data={bannerTwoType} />
-        <MostFavouraiteProducts categorySlug={currentCategory?.slug} />
+        <MostFavouriteProducts categorySlug={currentCategory?.slug} />
       </div>
     </main>
   )
