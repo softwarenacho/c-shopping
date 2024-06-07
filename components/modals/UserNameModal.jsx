@@ -1,10 +1,9 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { nameSchema } from 'utils'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useEditUserMutation } from '@/store/services'
-
-import { TextField, SubmitModalBtn, Modal, HandleResponse } from 'components'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { HandleResponse, Modal, SubmitModalBtn, TextField } from 'components'
+import { useForm } from 'react-hook-form'
+import { nameSchema } from 'utils'
 
 const UserNameModal = props => {
   //? Props
@@ -29,6 +28,9 @@ const UserNameModal = props => {
       body: { name },
     })
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <>
@@ -47,23 +49,25 @@ const UserNameModal = props => {
           onClose={onClose}
           className="flex flex-col h-full px-5 py-3 bg-white md:rounded-lg gap-y-5 "
         >
-          <Modal.Header onClose={onClose}>身份信息的提交和编辑</Modal.Header>
+          <Modal.Header onClose={onClose}>{dict.profile?.account?.edit}</Modal.Header>
           <Modal.Body>
-            <p className="text-sm">请输入身份信息，包括名字和姓氏</p>
+            <p className="text-sm">{dict.profile?.account?.identity}</p>
 
             <form
               className="flex flex-col justify-between flex-1 gap-y-5 "
               onSubmit={handleSubmit(submitHander)}
             >
               <TextField
-                label="名字和姓氏"
+                label={dict.profile?.account?.name}
                 control={control}
                 errors={formErrors.name}
                 name="name"
               />
 
               <div className="py-3 border-t-2 border-gray-200 lg:pb-0 ">
-                <SubmitModalBtn isLoading={isLoading}>确认</SubmitModalBtn>
+                <SubmitModalBtn isLoading={isLoading}>
+                  {dict.profile?.account?.confirm}
+                </SubmitModalBtn>
               </div>
             </form>
           </Modal.Body>

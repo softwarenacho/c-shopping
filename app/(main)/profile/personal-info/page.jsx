@@ -1,9 +1,9 @@
 'use client'
 
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
-import { Icons, UserMobileModal, UserNameModal, PageContainer, Skeleton } from 'components'
-
-import { useUserInfo, useDisclosure } from 'hooks'
+import { Icons, PageContainer, Skeleton, UserMobileModal, UserNameModal } from 'components'
+import { useDisclosure, useUserInfo } from 'hooks'
 
 const PersonalInfo = () => {
   useTitle('账户信息')
@@ -17,7 +17,7 @@ const PersonalInfo = () => {
   //? Local Component
   const InfoField = ({ label, info, editHandler, isLoading }) => (
     <div className="flex-1 px-5">
-      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+      <div className="flex items-center justify-between h-full py-4 border-b border-gray-200">
         <div>
           <span className="text-xs text-gray-700">{label}</span>
           {isLoading ? (
@@ -34,6 +34,9 @@ const PersonalInfo = () => {
       </div>
     </div>
   )
+
+  //? Dictionary
+  const { dict } = useLanguageContext()
 
   //? Render(s)
   return (
@@ -54,16 +57,16 @@ const PersonalInfo = () => {
       )}
 
       <main>
-        <PageContainer title="帐户信息">
+        <PageContainer title={dict.profile?.account?.information}>
           <section className="lg:flex">
             <InfoField
-              label="名字和姓氏"
+              label={dict.profile?.account?.name}
               info={userInfo?.name}
               editHandler={nameModalHandlers.open}
               isLoading={isLoading}
             />
             <InfoField
-              label="电话号码"
+              label={dict.profile?.account?.label}
               info={userInfo?.mobile}
               editHandler={phoneModalHandlers.open}
               isLoading={isLoading}

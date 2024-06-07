@@ -1,23 +1,24 @@
 'use client'
 
-import Link from 'next/link'
-
-import { useAppSelector } from 'hooks'
-
-import { truncate } from 'utils'
-
-import { EmptyCart, PageContainer, ResponsiveImage } from 'components'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
+import { EmptyCart, PageContainer, ResponsiveImage } from 'components'
+import { useAppSelector } from 'hooks'
+import Link from 'next/link'
+import { truncate } from 'utils'
 
 const UserHistory = () => {
   useTitle('最近访问')
   //? Store
   const { lastSeen } = useAppSelector(state => state.user)
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? selector
   return (
     <main>
-      <PageContainer title="最近访问">
+      <PageContainer title={dict.profile?.userHistory?.viewed}>
         {lastSeen.length > 0 ? (
           <div className="px-3 space-y-4 md:py-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-2 lg:grid-cols-3 md:gap-y-3">
             {lastSeen.map(item => (
@@ -46,7 +47,7 @@ const UserHistory = () => {
         ) : (
           <section className="py-20">
             <EmptyCart className="mx-auto h-52 w-52" />
-            <p className="text-center">您的最近访问列表为空</p>
+            <p className="text-center">{dict.profile?.userHistory?.empty}</p>
           </section>
         )}
       </PageContainer>

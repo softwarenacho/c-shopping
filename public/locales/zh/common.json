@@ -144,6 +144,25 @@
         "action": "确定",
         "cancel": "取消"
       }
+    },
+    "address": {
+      "address": "地址",
+      "noAddress": "您尚未填写地址",
+      "registration": "地址登记"
+    },
+    "userHistory": {
+      "viewed": "最近访问",
+      "empty": "您的最近访问列表为空"
+    },
+    "account": {
+      "information": "帐户信息",
+      "name": "名字和姓氏",
+      "phone": "电话号码",
+      "edit": "身份信息的提交和编辑",
+      "identity": "请输入身份信息，包括名字和姓氏",
+      "confirm": "确认",
+      "record": "手机号码记录及编辑",
+      "enterPhone": "请输入您的手机号码"
     }
   }
 }

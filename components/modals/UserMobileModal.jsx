@@ -1,11 +1,9 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-
-import { mobileSchema } from 'utils'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useEditUserMutation } from '@/store/services'
-
-import { TextField, SubmitModalBtn, Modal, HandleResponse } from 'components'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { HandleResponse, Modal, SubmitModalBtn, TextField } from 'components'
+import { useForm } from 'react-hook-form'
+import { mobileSchema } from 'utils'
 
 const UserMobileModal = props => {
   //? Props
@@ -31,6 +29,9 @@ const UserMobileModal = props => {
     })
   }
 
+  //? Dictionary
+  const { dict } = useLanguageContext()
+
   //? Render(s)
   return (
     <>
@@ -50,15 +51,15 @@ const UserMobileModal = props => {
           onClose={onClose}
           className="flex flex-col h-full px-5 py-3 bg-white md:rounded-lg gap-y-5 "
         >
-          <Modal.Header onClose={onClose}>手机号码记录及编辑</Modal.Header>
+          <Modal.Header onClose={onClose}>{dict.profile?.account?.record}</Modal.Header>
           <Modal.Body>
-            <p className="text-sm">请输入您的手机号码</p>
+            <p className="text-sm">{dict.profile?.account?.enterPhone}</p>
             <form
               className="flex flex-col justify-between flex-1 gap-y-5"
               onSubmit={handleSubmit(submitHander)}
             >
               <TextField
-                label="电话号码"
+                label={dict.profile?.account?.phone}
                 control={control}
                 errors={formErrors.mobile}
                 name="mobile"
@@ -67,7 +68,9 @@ const UserMobileModal = props => {
               />
 
               <div className="py-3 border-t-2 border-gray-200 lg:pb-0 ">
-                <SubmitModalBtn isLoading={isLoading}>确认</SubmitModalBtn>
+                <SubmitModalBtn isLoading={isLoading}>
+                  {dict.profile?.account?.confirm}
+                </SubmitModalBtn>
               </div>
             </form>
           </Modal.Body>

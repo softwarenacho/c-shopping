@@ -144,6 +144,25 @@
         "action": "Confirm",
         "cancel": "Cancel"
       }
+    },
+    "address": {
+      "address": "My Addresses",
+      "noAddress": "You have not filled in an address",
+      "registration": "Address Registration"
+    },
+    "userHistory": {
+      "viewed": "Recently Viewed",
+      "empty": "Your recently viewed list is empty"
+    },
+    "account": {
+      "information": "Account Information",
+      "name": "Name and Surname",
+      "phone": "Phone Number",
+      "edit": "Submit and Edit Identity Information",
+      "identity": "Please enter identity information, including name and surname",
+      "confirm": "Confirm",
+      "record": "Phone Number Record and Edit",
+      "enterPhone": "Please enter your phone number"
     }
   }
 }
