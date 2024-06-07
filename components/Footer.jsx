@@ -96,7 +96,8 @@ export default function Footer() {
           dimensions="h-16 w-16"
           className="overflow-hidden border-4 border-red-600 rounded-full"
           src="/developer.jpg"
-          alt={dict.footer?.huang}
+          sizes="4rem"
+          alt={dict.footer?.huang || 'dev'}
         />
         <p className="text-white">
           <a href="/" target="_blank" className="text-sky-400">
