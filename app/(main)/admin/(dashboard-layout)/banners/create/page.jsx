@@ -1,16 +1,17 @@
 'use client'
 
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useTitle, useUrlQuery } from '@/hooks'
+import { useCreateBannerMutation } from '@/store/services'
+import { BannerForm, HandleResponse, PageContainer } from 'components'
 import { useRouter } from 'next/navigation'
 
-import { BannerForm, HandleResponse, PageContainer } from 'components'
-
-import { SubmitHandler } from 'react-hook-form'
-
-import { useCreateBannerMutation } from '@/store/services'
-import { useTitle, useUrlQuery } from '@/hooks'
-
 const CreateBannerPage = () => {
-  useTitle('新增banner')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin?.banner.title || '新增banner')
+
   //? Assets
   const { back } = useRouter()
   const query = useUrlQuery()
@@ -43,7 +44,7 @@ const CreateBannerPage = () => {
       )}
 
       <main>
-        <PageContainer title="新增banner">
+        <PageContainer title={dict.admin?.banner.title}>
           <BannerForm mode="create" isLoadingCreate={isLoading} createHandler={createHandler} />
         </PageContainer>
       </main>

@@ -192,6 +192,9 @@
     "developer": "开发"
   },
   "admin": {
+    "login": "管理员登录",
+    "loginError": "您无权访问管理面板",
+    "notFound": "返回管理后台",
     "charts": "图表",
     "analytics": "情况分析",
     "development": "开发中",
@@ -229,7 +232,9 @@
     },
     "products":{
       "title": "商品管理",
+      "singular": "商品",
       "this": "该商品",
+      "edit": "编辑商品",
       "reset": "重制筛选",
       "product": "商品名称...",
       "filter": "过滤筛选",
@@ -306,7 +311,8 @@
       "user": "用户",
       "action": "操作",
       "pending": "等待确认",
-      "confirmed": "已确认"
+      "confirmed": "已确认",
+      "details": "评价详情"
     },
     "slider":{
       "title": "滑块管理",
@@ -327,7 +333,22 @@
       "submit": "提交"
     },
     "banner":{
-      "title": "横幅管理"
+      "title": "banner管理",
+      "subset": "子集",
+      "edit": "编辑",
+      "image": "图片",
+      "categoryName": "分类名称",
+      "type": "类型",
+      "action": "操作",
+      "titleTH": "横幅标题",
+      "link": "链接地址",
+      "url": "图片地址",
+      "status": "发布状态",
+      "typeOne": "第一种",
+      "typeTwo": "第二种",
+      "update": "更新",
+      "delete": "删除",
+      "submit": "提交"
     }
   }
 }

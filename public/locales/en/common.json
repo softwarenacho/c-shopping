@@ -192,6 +192,9 @@
     "developer": "Developer"
   },
   "admin": {
+    "login": "Admin Login",
+    "loginError": "You do not have access to the admin panel",
+    "notFound": "Return to admin dashboard",
     "charts": "Charts",
     "analytics": "Analytics",
     "development": "Under Development",
@@ -229,7 +232,9 @@
     },
     "products":{
       "title": "Products",
+      "singular": "Product",
       "this": "This Product",
+      "edit": "Edit Product",
       "reset": "Reset Filter",
       "product": "Product Name...",
       "filter": "Filter",
@@ -275,18 +280,18 @@
         "createTime": "Create Time",
         "updateTime": "Update Time",
         "action": "Create",
-        "edit": "Edit Details",
+        "edit": "Edit",
         "select": "Select Type",
         "attribute": "Attribute",
         "detail": "Detail",
         "error": "Please enter details and attributes",
-        "details": "Category Details and Features",
+        "details": "Details and Features",
         "default": "Default",
         "color": "By Color",
         "size": "By Size",
-        "update": "Update Category Details",
-        "delete": "Delete Category Details",
-        "create": "Create Category Details"
+        "update": "Update",
+        "delete": "Delete",
+        "create": "Create"
       }
     }, 
     "details":{
@@ -307,7 +312,8 @@
       "user": "User",
       "action": "Actions",
       "pending": "Pending Confirmation",
-      "confirmed": "Confirmed"
+      "confirmed": "Confirmed",
+      "details": "Comment"
     },
     "slider":{
       "title": "Sliders",
@@ -328,7 +334,22 @@
       "submit": "Submit"
     },
     "banner":{
-      "title": "Banners"
+      "title": "Banners",
+      "subset": "Subset",
+      "edit": "Edit",
+      "image": "Image",
+      "categoryName": "Category Name",
+      "type": "Type",
+      "action": "Actions",
+      "titleTH": "Banner Title",
+      "link": "Link URL",
+      "url": "Image URL",
+      "status": "Publish Status",
+      "typeOne": "Type One",
+      "typeTwo": "Type Two",
+      "update": "Update",
+      "delete": "Delete",
+      "submit": "Submit"
     }
   }
 }

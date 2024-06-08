@@ -11,7 +11,11 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 export default function LoginPage() {
-  useTitle('管理员登录')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin ? dict.admin.login : '管理员登录')
+
   //? Assets
   const dispatch = useDispatch()
   const { push } = useRouter()
@@ -27,9 +31,6 @@ export default function LoginPage() {
       })
     }
   }
-
-  // ? Dictionary
-  const { dict } = useLanguageContext()
 
   //? Handle Login User Response
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function LoginPage() {
         dispatch(
           showAlert({
             status: 'error',
-            title: '您无权访问管理面板',
+            title: dict.admin?.login.error,
           })
         )
       }

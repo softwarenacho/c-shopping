@@ -1,11 +1,16 @@
 'use client'
 
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle } from '@/hooks'
 import { useGetSingleReviewQuery } from '@/store/services'
 import { BigLoading, PageContainer, ReviewCard } from 'components'
 
 const SingleCommentPage = ({ params: { id } }) => {
-  useTitle('评价详情')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin ? dict.admin.review.details : '评价详情')
+
   //? Get Single Review Data
   const { data, isLoading } = useGetSingleReviewQuery({
     id,
@@ -14,7 +19,7 @@ const SingleCommentPage = ({ params: { id } }) => {
   //? Render(s)
   return (
     <main>
-      <PageContainer title="评价详情">
+      <PageContainer title={dict.admin.review.details}>
         {isLoading ? (
           <div className="px-3 py-20">
             <BigLoading />

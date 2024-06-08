@@ -1,15 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-
-import { Button, ControlledCheckbox, TextField, UploadImage } from 'components'
-
-import { useForm } from 'react-hook-form'
+import { useLanguageContext } from '@/context/LanguageContext'
 import { yupResolver } from '@hookform/resolvers/yup'
-
-import { bannerSchema } from 'utils'
-
+import { Button, ControlledCheckbox, TextField, UploadImage } from 'components'
+import Image from 'next/image'
 import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { bannerSchema } from 'utils'
 
 const BannerForm = props => {
   //? Props
@@ -60,6 +57,9 @@ const BannerForm = props => {
     }
   }, [selectedBanner])
 
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
   return (
     <section className="p-3 mx-auto mb-10 space-y-8">
       <div className="mx-3 overflow-x-auto mt-7 lg:mx-5 xl:mx-10">
@@ -67,12 +67,26 @@ const BannerForm = props => {
           onSubmit={mode === 'create' ? handleSubmit(createHandler) : handleSubmit(updateHandler)}
           className="space-y-3"
         >
-          <TextField label="横幅标题" control={control} name="title" errors={formErrors?.title} />
+          <TextField
+            label={dict.admin?.banner.titleTH}
+            control={control}
+            name="title"
+            errors={formErrors?.title}
+          />
 
-          <TextField label="链接地址" control={control} name="uri" errors={formErrors?.uri} />
+          <TextField
+            label={dict.admin?.banner.link}
+            control={control}
+            name="uri"
+            errors={formErrors?.uri}
+          />
 
           <div className="w-44 my-3">
-            <ControlledCheckbox name="isPublic" control={control} label="发布状态" />
+            <ControlledCheckbox
+              name="isPublic"
+              control={control}
+              label={dict.admin?.banner.status}
+            />
           </div>
 
           <div className="flex items-center gap-8 mb-5">
@@ -83,7 +97,7 @@ const BannerForm = props => {
                 value="one"
                 {...register('type')}
               />
-              <span className="ml-2 text-gray-700">第一种</span>
+              <span className="ml-2 text-gray-700">{dict.admin?.banner.typeOne}</span>
             </label>
 
             <label className="inline-flex items-center gap-x-2">
@@ -93,12 +107,12 @@ const BannerForm = props => {
                 value="two"
                 {...register('type')}
               />
-              <span className="ml-2 text-gray-700">第二种</span>
+              <span className="ml-2 text-gray-700">{dict.admin?.banner.typeTwo}</span>
             </label>
           </div>
 
           <TextField
-            label="图片地址"
+            label={dict.admin?.banner.url}
             control={control}
             name="image.url"
             errors={formErrors?.image?.url}
@@ -128,11 +142,11 @@ const BannerForm = props => {
                   type="submit"
                   isLoading={isLoadingUpdate}
                 >
-                  更新
+                  {dict.admin?.banner.update}
                 </Button>
 
                 <Button isRounded={true} isLoading={isLoadingDelete} onClick={deleteHandler}>
-                  删除
+                  {dict.admin?.banner.delete}
                 </Button>
               </>
             ) : (
@@ -142,7 +156,7 @@ const BannerForm = props => {
                 type="submit"
                 isLoading={isLoadingCreate}
               >
-                提交
+                {dict.admin?.banner.submit}
               </Button>
             )}
           </div>

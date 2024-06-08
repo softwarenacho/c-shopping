@@ -65,8 +65,10 @@ export default function ProfileAside() {
           <LogoH className="w-40 h-12 mx-auto" />
         )}
       </Link>
-      <LanguageSwitcher />
       <div className="mt-4">
+        <div className="flex-center py-4 mx-4 text-xs font-medium text-gray-700 border-t border-gray-300 gap-x-1 md:text-sm">
+          <LanguageSwitcher />
+        </div>
         {profilePaths.map((item, index) => (
           <BoxLink key={index} path={item.path} name={item.name}>
             <item.Icon className="icon text-black" />

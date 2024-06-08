@@ -1,8 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
+import { useLanguageContext } from '@/context/LanguageContext'
+import { useTitle, useUrlQuery } from '@/hooks'
+import {
+  useDeleteBannerMutation,
+  useGetSingleBannerQuery,
+  useUpdateBannerMutation,
+} from '@/store/services'
 import {
   BannerForm,
   BigLoading,
@@ -11,17 +15,9 @@ import {
   HandleResponse,
   PageContainer,
 } from 'components'
-
 import { useDisclosure } from 'hooks'
-
-import {
-  useDeleteBannerMutation,
-  useGetSingleBannerQuery,
-  useUpdateBannerMutation,
-} from '@/store/services'
-
-import { SubmitHandler } from 'react-hook-form'
-import { useTitle, useUrlQuery } from '@/hooks'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const EditBannerPage = ({ params: { id: bannerId } }) => {
   //? Assets
@@ -112,7 +108,10 @@ const EditBannerPage = ({ params: { id: bannerId } }) => {
 
   const onErrorDelete = () => confirmDeleteModalHandlers.close()
 
-  useTitle('编辑banner' + ' ' + bannerName)
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle((dict.admin?.banner.title || '编辑banner') + ' ' + bannerName)
 
   return (
     <>
@@ -157,7 +156,7 @@ const EditBannerPage = ({ params: { id: bannerId } }) => {
       )}
 
       <main>
-        <PageContainer title={'编辑banner' + ' ' + bannerName}>
+        <PageContainer title={dict.admin?.banner.title + ' ' + bannerName}>
           {isLoadingGetSelectedBanner ? (
             <div className="px-3 py-20">
               <BigLoading />

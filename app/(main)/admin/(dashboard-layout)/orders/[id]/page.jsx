@@ -1,13 +1,15 @@
 'use client'
 
-import { useGetSingleOrderQuery } from '@/store/services'
-
-import { BigLoading, DashboardLayout, OrderCard, PageContainer } from 'components'
-
+import { useLanguageContext } from '@/context/LanguageContext'
 import { useTitle, useUrlQuery } from '@/hooks'
+import { useGetSingleOrderQuery } from '@/store/services'
+import { BigLoading, OrderCard, PageContainer } from 'components'
 
 const SingleOrder = ({ params }) => {
-  useTitle('订单详情')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin ? dict.admin.order.title : '订单详情')
   //? Assets
   const query = useUrlQuery()
 
@@ -19,7 +21,7 @@ const SingleOrder = ({ params }) => {
   //? Render(s)
   return (
     <main>
-      <PageContainer title="订单详情">
+      <PageContainer title={dict.admin?.order.title}>
         {isLoading ? (
           <div className="px-3 py-20">
             <BigLoading />
