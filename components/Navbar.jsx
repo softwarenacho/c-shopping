@@ -35,7 +35,7 @@ export default function Navbar() {
   }, [categories])
 
   // ? Dictionary
-  const { dict } = useLanguageContext()
+  const translation = useLanguageContext()
 
   //? Render
   return (
@@ -46,7 +46,7 @@ export default function Navbar() {
         onMouseLeave={() => setHover(false)}
       >
         <Icons.Bars className="icon" />
-        {dict.header?.navbar?.categories}
+        {translation?.dict.header.navbar.categories}
       </button>
       <div
         className={`fixed left-0 z-20 w-full h-screen top-28 bg-gray-400/50 ${

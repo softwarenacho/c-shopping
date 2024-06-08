@@ -4,22 +4,25 @@ import { Icons } from 'components'
 import { useCallback, useState } from 'react'
 
 const LanguageSwitcher = () => {
-  const { setDict } = useLanguageContext()
+  const translation = useLanguageContext()
+  const [lang, setLang] = useState('zh')
 
   const getDict = useCallback(
     async lng => {
       const lang = await getDictionary(lng || 'zh')
-      setDict(lang)
+      translation?.setDict(lang)
     },
-    [setDict]
+    [translation]
   )
 
-  const [language, setLanguage] = useState(localStorage.getItem('lng') || 'zh')
   const changeLanguage = () => {
-    const lng = language === 'zh' ? 'en' : 'zh'
-    setLanguage(lng)
-    localStorage.setItem('lng', lng)
-    getDict(lng)
+    if (typeof window !== 'undefined') {
+      const language = window.localStorage.getItem('lng')
+      const lng = language === 'zh' ? 'en' : 'zh'
+      setLang(lng)
+      window.localStorage.setItem('lng', lng)
+      getDict(lng)
+    }
   }
 
   return (
@@ -27,8 +30,8 @@ const LanguageSwitcher = () => {
       className="flex-center text-sm gap-x-2 cursor-pointer dropdown__button"
       onClick={() => changeLanguage()}
     >
-      {language === 'en' && <button>En</button>}
-      {language === 'zh' && <button>中文</button>}
+      {lang === 'en' && <button>En</button>}
+      {lang === 'zh' && <button>中文</button>}
       <Icons.Translate className="icon" />
     </div>
   )

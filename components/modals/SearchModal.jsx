@@ -28,7 +28,7 @@ const SearchModal = props => {
   const [search, setSearch] = useState('')
 
   // ? Dictionary
-  const { dict } = useLanguageContext()
+  const translation = useLanguageContext()
 
   //? Assets
   const debouncedSearch = useDebounce(search, 1200)
@@ -65,7 +65,7 @@ const SearchModal = props => {
         onClose={onClose}
         className="flex flex-col h-screen py-3 pl-2 pr-4 bg-white lg:h-fit md:rounded-lg gap-y-3"
       >
-        <Modal.Header onClose={onClose}>{dict.header?.search?.modal?.title}</Modal.Header>
+        <Modal.Header onClose={onClose}>{translation?.dict.header.search.modal.title}</Modal.Header>
         <Modal.Body>
           <div className="flex flex-row my-3 rounded-md bg-zinc-200/80">
             <div className="p-2">
@@ -73,7 +73,7 @@ const SearchModal = props => {
             </div>
             <input
               type="text"
-              placeholder={dict.header?.search?.modal?.title}
+              placeholder={translation?.dict.header.search.modal.title}
               className="flex-grow p-1 text-left bg-transparent outline-none input focus:border-none"
               value={search}
               onChange={handleChange}

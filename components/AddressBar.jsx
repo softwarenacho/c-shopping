@@ -6,7 +6,7 @@ const BasicAddressBar = ({ addressModalProps }) => {
   const { address, isLoading, isVerify, openAddressModal, isAddress } = addressModalProps || {}
 
   // ? Dictionary
-  const { dict } = useLanguageContext()
+  const translation = useLanguageContext()
 
   //? Render(s)
   if (!isVerify) {
@@ -21,7 +21,7 @@ const BasicAddressBar = ({ addressModalProps }) => {
         className="flex items-center w-full gap-x-1 lg:w-fit"
       >
         <Icons.Location2 className="icon" />
-        <span>{dict.header?.address?.select}</span>
+        <span>{translation?.dict.header.address.select}</span>
 
         <Icons.ArrowRight2 className="mr-auto icon" />
       </button>
@@ -35,7 +35,7 @@ const BasicAddressBar = ({ addressModalProps }) => {
       >
         <Icons.Location2 className="icon" />
         <span>
-          {dict.header?.address?.send} {address?.province.name}, {address?.city.name},{' '}
+          {translation?.dict.header.address.send} {address?.province.name}, {address?.city.name},{' '}
           {address?.area.name}
         </span>
         <Icons.ArrowRight2 className="mr-auto icon" />
