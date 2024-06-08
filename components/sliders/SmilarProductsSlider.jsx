@@ -7,8 +7,8 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 
 // import required modules
-import { Navigation, FreeMode } from 'swiper'
 import { ProductCard } from 'components'
+import { FreeMode, Navigation } from 'swiper'
 
 const SmilarProductsSlider = props => {
   //? Props

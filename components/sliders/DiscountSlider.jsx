@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import Link from 'next/link'
 import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { DiscountProduct, ProductPrice, ResponsiveImage, Skeleton } from 'components'
 import { useGetProductsQuery } from '@/store/services'
+import { DiscountProduct, ProductPrice, ResponsiveImage, Skeleton } from 'components'
 
 const DiscountSlider = props => {
   //? Props

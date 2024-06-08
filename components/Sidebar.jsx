@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect } from 'react'
-import Link from 'next/link'
-
-import { Disclosure } from '@headlessui/react'
-import { Icons, SidebarSkeleton, LogoH } from 'components'
-
-import { useDisclosure } from 'hooks'
-
 import { useGetCategoriesQuery } from '@/store/services'
+import { Icons, LogoH, SidebarSkeleton } from 'components'
+import { useDisclosure } from 'hooks'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useEffect } from 'react'
+const { Disclosure } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 export default function Sidebar() {
   //? Assets

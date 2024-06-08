@@ -1,21 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
-
 import { useGetDetailsQuery } from '@/store/services'
-
-import { Tab } from '@headlessui/react'
 import {
   AddColors,
-  SelectCategories,
   AddSizes,
   Button,
-  TextField,
   ImageList,
+  SelectCategories,
   TextArea,
+  TextField,
 } from 'components'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+const { Tab } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 const tabListNames = [
   { id: 0, name: '标题｜介绍' },

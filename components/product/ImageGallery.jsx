@@ -4,13 +4,13 @@ import { useState } from 'react'
 
 import { ResponsiveImage, SpecialSell } from 'components'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ImageGallery = props => {
-  //? Porps
+  //? Props
   const { images, discount, inStock, productName } = props
 
   //? States

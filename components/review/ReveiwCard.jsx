@@ -1,11 +1,12 @@
 'use client'
 
-import { Fragment, useState } from 'react'
-
 import { useEditReviewMutation } from '@/store/services'
-
 import { HandleResponse, Icons, ResponsiveImage } from 'components'
-import { Menu, Transition } from '@headlessui/react'
+import dynamic from 'next/dynamic'
+import { Fragment, useState } from 'react'
+const { Menu, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 const ReveiwCard = props => {
   //? Props

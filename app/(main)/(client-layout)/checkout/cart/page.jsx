@@ -1,24 +1,23 @@
 'use client'
-import { Fragment } from 'react'
-import { useRouter } from 'next/navigation'
-
-import { clearCart } from 'store'
 
 import {
-  Icons,
-  FreeShipping,
-  CartItem,
-  CartInfo,
-  Header,
-  RedirectToLogin,
   Button,
+  CartInfo,
+  CartItem,
   EmptyCart,
+  FreeShipping,
+  Icons,
+  RedirectToLogin,
 } from 'components'
-import { Menu, Transition } from '@headlessui/react'
-
+import { useAppDispatch, useAppSelector, useDisclosure, useUserInfo } from 'hooks'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
+import { Fragment } from 'react'
+import { clearCart } from 'store'
 import { formatNumber } from 'utils'
-
-import { useUserInfo, useDisclosure, useAppSelector, useAppDispatch } from 'hooks'
+const { Menu, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 const CartPage = () => {
   //? Assets

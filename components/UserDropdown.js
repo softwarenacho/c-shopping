@@ -1,9 +1,10 @@
+import { Icons, Logout, Person } from 'components'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Fragment } from 'react'
-
-import { Menu, Transition } from '@headlessui/react'
-
-import { Icons, Logout, Person } from 'components'
+const { Menu, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 export default function UserDropdown(props) {
   //? Props

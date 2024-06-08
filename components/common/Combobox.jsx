@@ -1,12 +1,12 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { Fragment, useState } from 'react'
-
-import { Combobox as HUICombobox, Transition } from '@headlessui/react'
-
+import { useController } from 'react-hook-form'
 import { HiCheck, HiChevronDown } from 'react-icons/hi'
-
-import { Control, useController } from 'react-hook-form'
+const { Combobox: HUICombobox, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 const Combobox = props => {
   //? Props
@@ -50,11 +50,12 @@ const Combobox = props => {
           afterLeave={() => setQuery('')}
         >
           <HUICombobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg border border-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50">
-            {filteredList.length === 0 && query !== '' ? (
+            {filteredList?.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                 未找到任何项目!
               </div>
             ) : (
+              filteredList &&
               filteredList.map(item => (
                 <HUICombobox.Option
                   key={item.code}

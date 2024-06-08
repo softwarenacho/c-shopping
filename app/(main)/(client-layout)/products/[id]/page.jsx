@@ -1,6 +1,7 @@
+import { db } from '@/helpers'
 import { Product } from 'models'
-
-import {
+import dynamic from 'next/dynamic'
+const {
   FreeShipping,
   Services,
   SmilarProductsSlider,
@@ -15,8 +16,9 @@ import {
   Info,
   Breadcrumb,
   InitialStore,
-} from 'components'
-import { db } from '@/helpers'
+} = dynamic(() => import('components'), {
+  ssr: false,
+})
 
 export const getData = async params => {
   await db.connect()
@@ -121,7 +123,7 @@ const SingleProduct = async ({ params }) => {
 }
 
 export default SingleProduct
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }) {
   const { product, smilarProducts } = await getData(params)

@@ -1,8 +1,8 @@
 'use client'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Autoplay } from 'swiper'
+import { Autoplay, Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ResponsiveImage } from 'components'
 

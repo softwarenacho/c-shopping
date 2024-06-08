@@ -1,8 +1,11 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
+import dynamic from 'next/dynamic'
+import { Fragment } from 'react'
 import { HiCheck, HiChevronDown } from 'react-icons/hi'
+const { Listbox, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 export default function SelectBox(props) {
   //? Props

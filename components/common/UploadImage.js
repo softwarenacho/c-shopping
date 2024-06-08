@@ -1,10 +1,9 @@
 'use client'
 
-import OSS from 'ali-oss'
 import { useLazyGetUploadTokenQuery } from '@/store/services'
+import { getFilenameExt } from '@/utils'
 import { nanoid } from '@reduxjs/toolkit'
 import { useState } from 'react'
-import { getFilenameExt } from '@/utils'
 
 const UploadImage = props => {
   //? Props
@@ -45,6 +44,9 @@ const UploadImage = props => {
     const credentials = await getUploadToken().unwrap()
 
     const { AccessKeyId, AccessKeySecret, SecurityToken } = credentials.data
+
+    // import OSS from 'ali-oss' dynamically
+    const OSS = (await import('ali-oss')).default
     const ossClient = new OSS({
       accessKeyId: AccessKeyId,
       accessKeySecret: AccessKeySecret,

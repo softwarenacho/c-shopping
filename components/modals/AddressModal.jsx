@@ -1,33 +1,29 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { useEditUserMutation } from '@/store/services'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import { useUserInfo } from 'hooks'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { addressSchema } from 'utils'
 
-import { useUserInfo } from 'hooks'
-
-import regions from 'china-citys'
-
 import {
-  TextField,
-  DisplayError,
-  SubmitModalBtn,
   Combobox,
-  Modal,
+  DisplayError,
   HandleResponse,
+  Modal,
+  SubmitModalBtn,
+  TextField,
 } from 'components'
 
 const AddressModal = props => {
   //? Porps
   const { isShow, onClose, address } = props
+  const [regions, setRegions] = useState(null)
 
   //? Assets
-  let AllProvinces = regions.getProvinces()
+
+  let AllProvinces = regions?.getProvinces()
 
   //? Get User Data
   const { userInfo } = useUserInfo()
@@ -56,21 +52,26 @@ const AddressModal = props => {
   //* Change cities beside on province
   useEffect(() => {
     setValue('area', {})
-    getValues('city')?.code ? setAreas(regions.getAreasByCity(getValues('city')?.code)) : ''
+    getValues('city')?.code ? setAreas(regions?.getAreasByCity(getValues('city')?.code)) : ''
     watch('city')
   }, [getValues('city')?.code])
 
   useEffect(() => {
     setValue('city', {})
-    setCities(regions.getCitysByProvince(getValues('province')?.code))
+    setCities(regions?.getCitysByProvince(getValues('province')?.code))
     watch('province')
   }, [getValues('province')?.code])
 
   useEffect(() => {
+    const getCities = async () => {
+      const cities = (await import('china-citys')).default
+      setRegions(cities)
+    }
     if (userInfo?.address) {
       setValue('city', userInfo.address.city)
       setValue('area', userInfo.address.area)
     }
+    if (!regions) getCities()
   }, [])
 
   //? Handlers

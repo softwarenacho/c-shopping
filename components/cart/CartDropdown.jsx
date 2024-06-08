@@ -1,12 +1,12 @@
-import { Fragment } from 'react'
+import { ArrowLink, Button, CartBadge, CartItem, EmptyCart, RedirectToLogin } from 'components'
+import { useAppSelector, useDisclosure, useUserInfo } from 'hooks'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-
+import { Fragment } from 'react'
 import { formatNumber } from 'utils'
-
-import { useUserInfo, useDisclosure, useAppSelector } from 'hooks'
-
-import { Menu, Transition } from '@headlessui/react'
-import { ArrowLink, CartItem, RedirectToLogin, Button, CartBadge, EmptyCart } from 'components'
+const { Menu, Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 export default function CartDropdown() {
   //? Assets

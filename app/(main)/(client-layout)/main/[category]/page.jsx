@@ -1,17 +1,17 @@
 import { db } from '@/helpers'
 
-import { Category, Banner, Slider } from 'models'
+import { Banner, Category, Slider } from 'models'
 
+import { siteTitle } from '@/utils'
 import {
   BannerOne,
   BannerTwo,
   BestSellsSlider,
   Categories,
   DiscountSlider,
-  MostFavouraiteProducts,
   Slider as MainSlider,
+  MostFavouraiteProducts,
 } from 'components'
-import { siteTitle } from '@/utils'
 
 // export const revalidate = 20
 export const dynamic = 'force-dynamic'

@@ -4,7 +4,8 @@ async function connect() {
   if (!connection.readyState) {
     mongoose.set('strictQuery', false)
     try {
-      await mongoose.connect(process.env.MONGODB_URL, {
+      const uri = 'mongodb://admin:nacho@localhost:27017/choiceshop'
+      await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })

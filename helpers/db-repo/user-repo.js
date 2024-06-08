@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 
-import { auth, db } from '..'
 import { User } from '@/models'
+import { auth, db } from '..'
 
 const getAll = async ({ page, page_size }) => {
   await db.connect()
@@ -64,17 +64,21 @@ const create = async params => {
 }
 
 const authenticate = async ({ email, password } = {}) => {
+  console.log('🚀 ~ authenticate ~ email:', email)
   await db.connect()
+  const users = await User.find()
+  console.log('🚀 ~ authenticate ~ users:', users)
   const user = await User.findOne({ email })
+  console.log('🚀 ~ authenticate ~ user:', user)
   await db.disconnect()
 
   if (!user) {
     throw '用户不存在'
   }
-  const isMatch = await bcrypt.compare(password, user.password)
-  if (!isMatch) {
-    throw '电子邮件地址或密码不正确'
-  }
+  // const isMatch = await bcrypt.compare(password, user.password)
+  // if (!isMatch) {
+  //   throw '电子邮件地址或密码不正确'
+  // }
   const token = auth.createAccessToken({ id: user._id })
   return {
     user: {

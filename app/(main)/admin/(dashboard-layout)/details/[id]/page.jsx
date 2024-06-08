@@ -1,17 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react'
 
-import { useRouter } from 'next/navigation'
-
-import { showAlert } from 'store'
-
+import { useTitle, useUrlQuery } from '@/hooks'
 import {
   useCreateDetailsMutation,
   useDeleteDetailsMutation,
   useGetDetailsQuery,
   useUpdateDetailsMutation,
 } from '@/store/services'
-
 import {
   BigLoading,
   Button,
@@ -21,12 +16,15 @@ import {
   HandleResponse,
   PageContainer,
 } from 'components'
-import { Tab } from '@headlessui/react'
-
 import { useAppDispatch, useDisclosure } from 'hooks'
-
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useTitle, useUrlQuery } from '@/hooks'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { showAlert } from 'store'
+const { Tab } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 const tabListNames = [
   { id: 0, name: '选择类型' },

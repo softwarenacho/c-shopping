@@ -1,5 +1,8 @@
-import { Transition } from '@headlessui/react'
 import { Icons } from 'components'
+import dynamic from 'next/dynamic'
+const { Transition } = dynamic(() => import('@headlessui/react'), {
+  ssr: false,
+})
 
 export default function DisplayError(props) {
   //? Props
