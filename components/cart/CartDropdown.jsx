@@ -29,7 +29,7 @@ export default function CartDropdown() {
   return (
     <>
       <RedirectToLogin
-        title={translation?.dict.header.notLogged}
+        title={translation?.dict?.header?.notLogged}
         text=""
         onClose={redirectModalHandlers.close}
         isShow={isShowRedirectModal}
@@ -55,9 +55,11 @@ export default function CartDropdown() {
                 {/* Header */}
                 <div className="flex items-center justify-between px-3 py-4">
                   <span className="">
-                    {totalItems} {translation?.dict.header.cart.items}
+                    {totalItems} {translation?.dict?.header?.cart.items}
                   </span>
-                  <ArrowLink path="/checkout/cart">{translation?.dict.header.cart.check}</ArrowLink>
+                  <ArrowLink path="/checkout/cart">
+                    {translation?.dict?.header?.cart.check}
+                  </ArrowLink>
                 </div>
                 {/* Items */}
                 <div className="mx-1 overflow-y-auto divide-y divide-gray-50 h-80">
@@ -68,21 +70,21 @@ export default function CartDropdown() {
                 {/* Footer */}
                 <div className="flex items-center justify-between p-3 border-t">
                   <div>
-                    <span>{translation?.dict.header.cart.amount}</span>
+                    <span>{translation?.dict?.header?.cart.amount}</span>
                     <div className="flex-center">
                       <span className="text-sm">{formatNumber(totalPrice - totalDiscount)}</span>
                       <span className="ml-1">{translation?.dict.currency}</span>
                     </div>
                   </div>
 
-                  <Button onClick={handleRoute}>{translation?.dict.header.cart.goto}</Button>
+                  <Button onClick={handleRoute}>{translation?.dict?.header?.cart.goto}</Button>
                 </div>
               </>
             ) : (
               <>
                 <EmptyCart className="mx-auto h-44 w-44" />
                 <p className="pt-2 text-base font-bold text-center">
-                  {translation?.dict.header.cart.empty}
+                  {translation?.dict?.header?.cart.empty}
                 </p>
               </>
             )}

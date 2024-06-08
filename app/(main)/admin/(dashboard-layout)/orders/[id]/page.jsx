@@ -9,7 +9,7 @@ const SingleOrder = ({ params }) => {
   // ? Dictionary
   const { dict } = useLanguageContext()
 
-  useTitle(dict.admin ? dict.admin.order.title : '订单详情')
+  useTitle(dict.admin ? dict.admin.orders.title : '订单详情')
   //? Assets
   const query = useUrlQuery()
 
@@ -21,7 +21,7 @@ const SingleOrder = ({ params }) => {
   //? Render(s)
   return (
     <main>
-      <PageContainer title={dict.admin?.order.title}>
+      <PageContainer title={dict.admin?.orders?.title}>
         {isLoading ? (
           <div className="px-3 py-20">
             <BigLoading />

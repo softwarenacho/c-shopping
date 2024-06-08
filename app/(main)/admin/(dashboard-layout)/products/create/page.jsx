@@ -7,7 +7,10 @@ import { HandleResponse, PageContainer, ProductsForm } from 'components'
 import { useRouter } from 'next/navigation'
 
 const CreateProductPage = () => {
-  useTitle('商品新增')
+  // ? Dictionary
+  const { dict } = useLanguageContext()
+
+  useTitle(dict.admin ? dict.admin?.create.title : '商品新增')
   //? Assets
   const { push } = useRouter()
 
@@ -24,9 +27,6 @@ const CreateProductPage = () => {
   const onSuccess = () => {
     push('/admin/products')
   }
-
-  // ? Dictionary
-  const { dict } = useLanguageContext()
 
   return (
     <>

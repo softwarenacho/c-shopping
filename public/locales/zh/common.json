@@ -294,7 +294,11 @@
       }
     }, 
     "details":{
-      "title": "分类规格"
+      "title": "分类规格",
+      "features": "特点",
+      "specification": "规格",
+      "name": "名称",
+      "value": "值"
     },
     "user":{
       "title": "用户管理",

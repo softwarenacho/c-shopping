@@ -7,20 +7,20 @@ export default function Services() {
 
   const services = [
     {
-      name: translation?.dict.footer.delivery,
+      name: translation?.dict?.footer?.delivery,
       icon: <ExpressDelivery className="w-10 h-10" />,
     },
-    { name: translation?.dict.footer.availability, icon: <Support className="w-10 h-10" /> },
+    { name: translation?.dict?.footer?.availability, icon: <Support className="w-10 h-10" /> },
     {
-      name: translation?.dict.footer.pay,
+      name: translation?.dict?.footer?.pay,
       icon: <CashOnDelivery className="w-10 h-10" />,
     },
     {
-      name: translation?.dict.footer.sevenDay,
+      name: translation?.dict?.footer?.sevenDay,
       icon: <Daysreturn className="w-10 h-10" />,
     },
     {
-      name: translation?.dict.footer.original,
+      name: translation?.dict?.footer?.original,
       icon: <OriginalProducts className="w-10 h-10" />,
     },
   ]

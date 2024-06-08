@@ -207,7 +207,7 @@
       "group": "Group",
       "subProducts": "SubProducts",
       "attributes": "Attributes",
-      "specifications": "Specifications",
+      "specifications": "Specs",
       "inventory": "Inventory",
       "discount": "Discount %",
       "category": "Please select a category first",
@@ -260,7 +260,7 @@
       "action": "Action",
       "subcategories": "Subcategories",
       "edit": "Edit",
-      "specifications": "Specifications and Features",
+      "specifications": "Specs and Features",
       "slider": "Slider",
       "banner": "Banner",
       "empty": "No categories yet",
@@ -295,7 +295,11 @@
       }
     }, 
     "details":{
-      "title": "Category Details"
+      "title": "Category Details",
+      "features": "Features",
+      "specification": "Specs",
+      "name": "Name",
+      "value": "Value"
     },
     "user":{
       "title": "Users",
@@ -344,7 +348,7 @@
       "titleTH": "Banner Title",
       "link": "Link URL",
       "url": "Image URL",
-      "status": "Publish Status",
+      "status": "Published",
       "typeOne": "Type One",
       "typeTwo": "Type Two",
       "update": "Update",
